@@ -87,58 +87,70 @@
             color: var(--primary-gold);
         }
 
-        /* ===== HERO COVER SECTION WITH ADVANCED BACKUP CODES ===== */
-        .hero {
+        /* ===== NEW FIXED HERO LAYOUT WITH DIRECT IMAGE HOLDER ===== */
+        .hero-container {
             margin-top: 75px;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            position: relative;
-            text-align: center;
-            padding: 6rem 2rem;
+            width: 100%;
+            background: #0d0a05;
             border-bottom: 3px solid var(--deep-gold);
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
-            
-            /* প্রাথমিক ব্যাকগ্রাউন্ড থিম (যদি কোনো ইমেজই গিটহাবে না পায়) */
-            background-color: #0d0a05;
+            position: relative;
+            z-index: 2;
         }
 
-        .hero::after {
+        /* আপনার দেওয়া লাক্সারিয়াস ইমেজটির জন্য পারফেক্ট ফ্রেম */
+        .hero-banner-frame {
+            width: 100%;
+            max-height: 550px;
+            overflow: hidden;
+            position: relative;
+            display: block;
+        }
+
+        .hero-banner-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ইমেজ স্ক্রিন অনুযায়ী অটো ফিট হবে */
+            display: block;
+        }
+
+        /* ইমেজের উপরে প্রিমিয়াম ডার্ক শ্যাডো লেয়ার, যাতে টেক্সট সুন্দরভাবে পড়া যায় */
+        .hero-banner-frame::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 120px;
-            background: linear-gradient(to top, rgba(10,10,10,1), transparent);
-            pointer-events: none;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 100%);
         }
 
-        .hero-content {
+        /* লেখার কন্টেন্ট বক্স */
+        .hero-text-content {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
             max-width: 850px;
+            text-align: center;
             z-index: 5;
-            position: relative;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.8rem;
             font-weight: 900;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: var(--primary-gold);
-            letter-spacing: 3px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 215, 0, 0.3);
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 215, 0, 0.4);
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
             color: #ffffff;
-            line-height: 1.8;
-            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9);
+            line-height: 1.7;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.95);
             font-weight: 500;
         }
 
@@ -350,7 +362,8 @@
 
         @media (max-width: 768px) {
             nav ul { display: none; }
-            .hero h1 { font-size: 2.3rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
             .banner-slider { height: 320px; }
             .contact-container { grid-template-columns: 1fr; }
         }
@@ -372,13 +385,17 @@
         </ul>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
+    <div class="hero-container" id="home">
+        <div class="hero-banner-frame">
+            <img src="1000014883.png" id="mainHeroImage" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Premium Malaysian 4D Hub Banner">
+        </div>
+        
+        <div class="hero-text-content">
             <h1>Premium Malaysian 4D Hub</h1>
             <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
             <a href="#contact" class="cta-button">Connect Securely</a>
         </div>
-    </section>
+    </div>
 
     <section class="banner-section" id="banner">
         <div class="banner-container">
@@ -447,23 +464,8 @@
     </footer>
 
     <script>
-        // SMART LOGIC: স্বয়ংক্রিয় কেস-সেনসিটিভিটি হ্যান্ডেলার ফর হিরো ব্যানার ইমেজ
-        const heroSection = document.getElementById('home');
-        const imgLoader = new Image();
-        imgLoader.src = '1000014883.png';
-        
-        imgLoader.onload = function() {
-            heroSection.style.backgroundImage = "linear-gradient(rgba(10, 10, 10, 0.65), rgba(10, 10, 10, 0.85)), url('1000014883.png')";
-        };
-        imgLoader.onerror = function() {
-            // যদি ছোট হাতের .png না কাজ করে তবে বড় হাতের .PNG লোড করবে
-            heroSection.style.backgroundImage = "linear-gradient(rgba(10, 10, 10, 0.65), rgba(10, 10, 10, 0.85)), url('1000014883.PNG')";
-        };
-
         // SMART LOGIC: স্লাইডার ইমেজগুলোর স্বয়ংক্রিয় বড় হাতের/ছোট হাতের এক্সটেনশন হ্যান্ডেলিং
         const sliderIds = ['slide0', 'slide1', 'slide2', 'slide3'];
-        const fallbackExtensions = ['.jpg', '.JPG', '.png', '.PNG'];
-
         sliderIds.forEach((id, idx) => {
             const imgEl = document.getElementById(id);
             let baseName = `100001487${4 + idx}`;
