@@ -26,7 +26,7 @@
             width: 100%;
             height: 100%;
             font-family: 'Times New Roman', Times, Georgia, serif;
-            background: #1a1a1a; /* পুরোপুরি কালো পরিবর্তন করে লাক্সারি ডার্ক ব্যাকগ্রাউন্ড (অ্যান্টি-ব্ল্যাংক প্রটেকশন) */
+            background: #0d0d0d; 
             color: var(--white);
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -88,14 +88,14 @@
             color: var(--primary-gold);
         }
 
-        /* ===== ADVANCED HERO VIEWPORT (FIXED IMAGE ARCHITECTURE) ===== */
+        /* ===== HERO VIEWPORT (FIXED HEIGHT & FLASH CUT ACTION) ===== */
         .hero-view-port {
             margin-top: 75px;
             width: 100%;
-            height: 620px;
+            height: 650px; /* ডেস্কটপ স্ক্রিনের জন্য পারফেক্ট হাইট */
             position: relative;
             overflow: hidden;
-            background: #1a1a1a; 
+            background: #0d0d0d; 
             border-bottom: 3px solid var(--deep-gold);
         }
 
@@ -122,26 +122,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
-            background: #1a1a1a;
+            transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+            background: #0d0d0d;
         }
 
-        /* একটিভ স্লাইড ভিউ (কোনো ব্ল্যাংক ট্রানজিশন হবে না) */
+        /* একটিভ স্লাইড ভিউ */
         .full-slide-layer.active {
             opacity: 1;
             visibility: visible;
             z-index: 2;
         }
 
+        /* ফ্ল্যাশ কাট রেসপন্সিভ ইমেজ পলিসি (ডিজাইন আর কাটবে না) */
         .slide-bg-img {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            object-fit: cover; /* অ্যান্ড্রয়েড ও পিসিতে ব্যানার নিখুঁত রেসপন্সিভ দেখানোর জন্য */
+            object-fit: contain; /* ইমেজের কোণা বা টেক্সট যেন কোনোভাবেই না কাটে */
         }
 
+        /* প্রথম স্লাইডের ইমেজের টেক্সট ওভারলে */
         .first-slide::after {
             content: '';
             position: absolute;
@@ -149,7 +152,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 2;
         }
 
@@ -432,16 +435,23 @@
         .footer-col ul a:hover { color: var(--primary-gold); }
         .footer-bottom { border-top: 1px solid rgba(255,215,0,0.1); padding-top: 2rem; margin-top: 2rem; }
 
-        /* ===== RESPONSIVE ARCHITECTURE FOR MOBILE & DESKTOP ===== */
+        /* ===== RESPONSIVE ARCHITECTURE ===== */
         @media (max-width: 992px) {
-            .hero-view-port { height: 480px; }
+            .hero-view-port { height: 520px; }
         }
 
         @media (max-width: 768px) {
             nav ul { display: none; }
-            .hero-view-port { height: 320px; margin-top: 70px; }
-            .original-text-box h1 { font-size: 1.9rem; margin-bottom: 0.6rem; }
-            .original-text-box p { font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.5; }
+            /* মোবাইল ভিউতে হাইট বৃদ্ধি করা হয়েছে যাতে ইমেজের ডিজাইন স্পষ্টভাবে দেখা যায় */
+            .hero-view-port { height: 420px; margin-top: 70px; }
+            
+            .slide-bg-img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; /* মোবাইল স্ক্রিনে ইমেজ রেশিও এবং ডিজাইন শতভাগ অক্ষুণ্ণ রাখবে */
+            }
+            .original-text-box h1 { font-size: 1.8rem; margin-bottom: 0.6rem; }
+            .original-text-box p { font-size: 0.9rem; margin-bottom: 1.2rem; line-height: 1.5; }
             .cta-button { padding: 0.6rem 1.8rem; font-size: 0.85rem; }
             .profile-container, .contact-container { grid-template-columns: 1fr; gap: 2rem; }
             .section-title { font-size: 2.1rem; }
@@ -450,12 +460,14 @@
         }
 
         @media (max-width: 480px) {
-            .hero-view-port { height: 240px; }
+            /* ছোট হ্যান্ডসেটে ব্যানার ফুটিয়ে তোলার জন্য রেসপন্সিভ হাইট */
+            .hero-view-port { height: 320px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVIGATION MENU -->
     <nav>
         <div class="logo">
             <img class="logo-img" src="1000014839.png" alt="Logo">
@@ -471,11 +483,13 @@
         </ul>
     </nav>
 
+    <!-- ANTI-BLANK LANDING LOOPER -->
     <div class="hero-view-port" id="home">
         <canvas id="particleCanvas"></canvas>
 
+        <!-- স্লাইড ১ (ফাস্ট ভিউপয়েন্ট ইমেজ) -->
         <div class="full-slide-layer first-slide active">
-            <img class="slide-bg-img" src="1000014883.png" loading="eager" alt="Cover Luxury Background">
+            <img class="slide-bg-img" src="1000014884.jpg" loading="eager" alt="Cover Premium Hub">
             <div class="original-text-box">
                 <h1>Win Big With Malaysian 4D</h1>
                 <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
@@ -483,23 +497,28 @@
             </div>
         </div>
 
+        <!-- স্লাইড ২ (4D Dragon) -->
         <div class="full-slide-layer">
             <img class="slide-bg-img" src="1000014885.png" loading="eager" alt="Dragon 4D Tips">
         </div>
 
+        <!-- SLiDE 3 (Magnum 4D - ফ্ল্যাশ কাট রেডি) -->
         <div class="full-slide-layer">
             <img class="slide-bg-img" src="1000014890.jpg" loading="eager" alt="Magnum 4D Royal Banner">
         </div>
 
+        <!-- SLiDE 4 (Sports Toto 4D - ফ্ল্যাশ কাট রেডি) -->
         <div class="full-slide-layer">
             <img class="slide-bg-img" src="1000014891.jpg" loading="eager" alt="Sports Toto 4D Elite Banner">
         </div>
 
+        <!-- স্লাইড ৫ (Nine Lotto) -->
         <div class="full-slide-layer">
             <img class="slide-bg-img" src="1000014886.png" loading="eager" alt="Nine Lotto Premium">
         </div>
     </div>
 
+    <!-- AGENT PROFILE SECTION -->
     <section class="profile-section" id="profile">
         <div class="profile-container">
             <div class="profile-image-box">
@@ -529,6 +548,7 @@
         </div>
     </section>
 
+    <!-- PREMIUM SERVICES -->
     <section class="services-section" id="services">
         <h2 class="section-title">Our Premium Services</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 4rem;">Comprehensive analytical models engineered for maximum gaming potential</p>
@@ -567,6 +587,7 @@
         </div>
     </section>
 
+    <!-- LIVE RESULTS MONITOR -->
     <section class="results-section" id="results">
         <h2 class="section-title">Latest Live Confirmations</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Real-time verified extractions directly synced from official channels</p>
@@ -578,6 +599,7 @@
         </div>
     </section>
 
+    <!-- PORTFOLIO / HISTORIC WINS -->
     <section class="portfolio-section" id="portfolio">
         <h2 class="section-title">Previous Winning Games</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Celebrating historic milestone payouts and certified customer success records</p>
@@ -601,6 +623,7 @@
         </div>
     </section>
 
+    <!-- CONTACT GATEWAY -->
     <section class="contact-section" id="contact">
         <h2 class="section-title">Secure Enquiry Interface</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Initiate an authenticated connection protocol directly with management</p>
@@ -630,6 +653,7 @@
         </div>
     </section>
 
+    <!-- FOOTER ARCHITECTURE -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -651,6 +675,7 @@
         </div>
     </footer>
 
+    <!-- STABLE SLIDE RUNNER (LIGHTWEIGHT JS) -->
     <script>
         // --- 1. PARTICLES ENGINE ---
         const canvas = document.getElementById('particleCanvas');
@@ -696,18 +721,11 @@
 
         function triggerSlideTransition() {
             if (totalLayers <= 1) return;
-            
-            // বর্তমান স্লাইড হাইড করো
             slideLayers[currentLayerIdx].classList.remove('active');
-            
-            // ইনডেক্স পরিবর্তন করো
             currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
-            
-            // পরবর্তী স্লাইড শো করো
             slideLayers[currentLayerIdx].classList.add('active');
         }
 
-        // স্লাইড শো রান করার নিয়ম (৪ সেকেন্ড পর পর লোড হবে)
         if (totalLayers > 1) {
             setInterval(triggerSlideTransition, 4000); 
         }
