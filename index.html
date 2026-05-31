@@ -15,7 +15,7 @@
         :root {
             --primary-gold: #FFD700;
             --deep-gold: #C5A059;
-            --dark-black: #111111; /* পুরোপুরি কুচকুচে কালো পরিবর্তন করে সফট ডার্ক করা হয়েছে */
+            --dark-black: #111111;
             --luxury-dark: #1a1a1a;
             --white: #ffffff;
             --card-bg: #222222;
@@ -26,7 +26,7 @@
             width: 100%;
             height: 100%;
             font-family: 'Times New Roman', Times, Georgia, serif;
-            background: var(--dark-black);
+            background: #1a1a1a; /* পুরোপুরি কালো পরিবর্তন করে লাক্সারি ডার্ক ব্যাকগ্রাউন্ড (অ্যান্টি-ব্ল্যাংক প্রটেকশন) */
             color: var(--white);
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -88,18 +88,17 @@
             color: var(--primary-gold);
         }
 
-        /* ===== ADVANCED RESPONSIVE HERO VIEWPORT (FIXED BLACK PAGE ERROR) ===== */
+        /* ===== ADVANCED HERO VIEWPORT (FIXED IMAGE ARCHITECTURE) ===== */
         .hero-view-port {
             margin-top: 75px;
             width: 100%;
             height: 620px;
             position: relative;
             overflow: hidden;
-            background: #222222; /* কালো ব্যাকগ্রাউন্ড পরিবর্তন করে গ্রে করা হয়েছে যাতে ইমেজ লোড হওয়ার আগেই স্ক্রিন ব্ল্যাংক না লাগে */
+            background: #1a1a1a; 
             border-bottom: 3px solid var(--deep-gold);
         }
 
-        /* ক্যানভাস লেয়ার */
         #particleCanvas {
             position: absolute;
             top: 0;
@@ -110,7 +109,7 @@
             pointer-events: none;
         }
 
-        /* স্লাইড লেয়ার (অ্যানিমেশন সরল করা হয়েছে যাতে ক্র্যাশ না করে) ===== */
+        /* স্লাইড লেয়ার */
         .full-slide-layer {
             position: absolute;
             top: 0;
@@ -118,31 +117,31 @@
             width: 100%;
             height: 100%;
             opacity: 0;
+            visibility: hidden;
             z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 1s ease-in-out; /* ভারী ব্লার এবং স্কেল ইফেক্ট বাদ দেওয়া হয়েছে */
-            background: #222222;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+            background: #1a1a1a;
         }
 
-        /* একটিভ স্লাইড ভিউ */
+        /* একটিভ স্লাইড ভিউ (কোনো ব্ল্যাংক ট্রানজিশন হবে না) */
         .full-slide-layer.active {
             opacity: 1;
+            visibility: visible;
             z-index: 2;
         }
 
-        /* রেসপন্সিভ ইমেজ পলিসি */
         .slide-bg-img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* অ্যান্ড্রয়েড এবং ডেস্কটপ স্ক্রিনে ব্যানার চমৎকারভাবে ফিট করার জন্য cover ব্যবহার করা হয়েছে */
+            object-fit: cover; /* অ্যান্ড্রয়েড ও পিসিতে ব্যানার নিখুঁত রেসপন্সিভ দেখানোর জন্য */
         }
 
-        /* প্রথম স্লাইডের ইমেজের ওভারলে */
         .first-slide::after {
             content: '';
             position: absolute;
@@ -154,7 +153,6 @@
             z-index: 2;
         }
 
-        /* ওরিজিনাল টেক্সট বক্স */
         .original-text-box {
             position: relative;
             z-index: 3;
@@ -288,3 +286,431 @@
             font-size: 0.9rem;
             color: #aaaaaa;
             text-transform: uppercase;
+        }
+
+        /* ===== PREMIUM LOTTERY OPERATORS & SERVICES ===== */
+        .services-section {
+            padding: 6rem 2rem;
+            background: var(--dark-black);
+            border-bottom: 1px solid rgba(255,215,0,0.15);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: inline-block; }
+        .service-card h3 { color: var(--primary-gold); font-size: 1.4rem; margin-bottom: 0.8rem; }
+        .service-card p { color: #aaaaaa; font-size: 1.05rem; line-height: 1.6; }
+
+        /* ===== LIVE RESULTS MONITOR ===== */
+        .results-section {
+            padding: 6rem 2rem;
+            background: var(--luxury-dark);
+            border-bottom: 1px solid rgba(255,215,0,0.15);
+        }
+
+        .results-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .result-box {
+            background: #111111;
+            border-radius: 6px;
+            border-top: 4px solid var(--deep-gold);
+            padding: 2.2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .operator-name { font-size: 1.2rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 1rem; }
+        .lucky-number { font-size: 3.2rem; font-weight: 900; color: var(--primary-gold); margin: 1rem 0; }
+        .draw-time { font-size: 0.9rem; color: #888888; }
+
+        /* ===== PORTFOLIO / HISTORIC WINS ===== */
+        .portfolio-section {
+            padding: 6rem 2rem;
+            background: var(--dark-black);
+            border-bottom: 1px solid rgba(255,215,0,0.15);
+        }
+
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 2px solid rgba(197, 160, 89, 0.2);
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-card:hover { transform: scale(1.03); border-color: var(--primary-gold); }
+        .win-badge { font-size: 3rem; margin-bottom: 1rem; }
+        .portfolio-card h3 { color: var(--primary-gold); font-size: 1.6rem; }
+        .portfolio-card p { font-size: 1.1rem; color: #cccccc; }
+
+        /* ===== CONTACT GATEWAY ===== */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: var(--luxury-dark);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { color: var(--deep-gold); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .form-group input, .form-group textarea { padding: 1rem; background: #222222; border: 1px solid rgba(197, 160, 89, 0.4); color: white; border-radius: 4px; }
+
+        .contact-sidebar { display: flex; flex-direction: column; gap: 2rem; }
+        .contact-method-box { background: #111111; padding: 2rem; border-left: 4px solid var(--primary-gold); border-radius: 4px; }
+        .contact-method-box h4 { color: var(--primary-gold); font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .contact-method-box p, .contact-method-box a { color: white; text-decoration: none; font-size: 1.3rem; font-weight: 700; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a0a0a;
+            color: #888888;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 2px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: left;
+        }
+
+        .footer-col h4 { color: var(--primary-gold); font-size: 1.2rem; margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: #888888; text-decoration: none; }
+        .footer-col ul a:hover { color: var(--primary-gold); }
+        .footer-bottom { border-top: 1px solid rgba(255,215,0,0.1); padding-top: 2rem; margin-top: 2rem; }
+
+        /* ===== RESPONSIVE ARCHITECTURE FOR MOBILE & DESKTOP ===== */
+        @media (max-width: 992px) {
+            .hero-view-port { height: 480px; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero-view-port { height: 320px; margin-top: 70px; }
+            .original-text-box h1 { font-size: 1.9rem; margin-bottom: 0.6rem; }
+            .original-text-box p { font-size: 0.95rem; margin-bottom: 1.2rem; line-height: 1.5; }
+            .cta-button { padding: 0.6rem 1.8rem; font-size: 0.85rem; }
+            .profile-container, .contact-container { grid-template-columns: 1fr; gap: 2rem; }
+            .section-title { font-size: 2.1rem; }
+            .stats-grid { gap: 0.8rem; }
+            .stat-number { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-view-port { height: 240px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img class="logo-img" src="1000014839.png" alt="Logo">
+            <span>MALAYSIAN LOTTERY</span>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#profile">About Me</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#results">Live Results</a></li>
+            <li><a href="#portfolio">Wins</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-view-port" id="home">
+        <canvas id="particleCanvas"></canvas>
+
+        <div class="full-slide-layer first-slide active">
+            <img class="slide-bg-img" src="1000014883.png" loading="eager" alt="Cover Luxury Background">
+            <div class="original-text-box">
+                <h1>Win Big With Malaysian 4D</h1>
+                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
+                <a href="#contact" class="cta-button">Connect Securely</a>
+            </div>
+        </div>
+
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014885.png" loading="eager" alt="Dragon 4D Tips">
+        </div>
+
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014890.jpg" loading="eager" alt="Magnum 4D Royal Banner">
+        </div>
+
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014891.jpg" loading="eager" alt="Sports Toto 4D Elite Banner">
+        </div>
+
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014886.png" loading="eager" alt="Nine Lotto Premium">
+        </div>
+    </div>
+
+    <section class="profile-section" id="profile">
+        <div class="profile-container">
+            <div class="profile-image-box">
+                <img src="1000014839.png" alt="Verified Premium Agent">
+            </div>
+            <div class="profile-info">
+                <h2>Verified Premium Agent</h2>
+                <div class="profile-badge">Institutional Grade Authentication</div>
+                <p>Welcome to the premier digital gateway for Malaysian lottery asset tracking. With over 15 years of industry-leading performance analytics, we secure direct verifications and expert numerical architectures for selective clientele globally.</p>
+                <p>Our operation prioritizes complete validation data, flawless transaction pathways, and optimized historical analysis parameters to deliver success with unmatched transparency.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">VIP Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Success Matrix</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Live Gateway</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <h2 class="section-title">Our Premium Services</h2>
+        <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 4rem;">Comprehensive analytical models engineered for maximum gaming potential</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎰</div>
+                <h3>Magnum 4D Module</h3>
+                <p>Classic regional integration mechanics providing high stability dividend infrastructure.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏁</div>
+                <h3>Sports Toto System</h3>
+                <p>High-capacity structural distribution matrix optimized for advanced jackpot architectures.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🐎</div>
+                <h3>Damacai 1+3D Tool</h3>
+                <p>Sophisticated formula calculations combined with premium algorithm matching models.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔮</div>
+                <h3>Expert Generator</h3>
+                <p>Algorithmic probability mechanics deployed via cloud computing frameworks.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📜</div>
+                <h3>Historical Archives</h3>
+                <p>Deep database tracking across 15 years of structured past performance indicators.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Instant Ticket OCR</h3>
+                <p>Immediate digital verification protocols cross-checked against official databases.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section" id="results">
+        <h2 class="section-title">Latest Live Confirmations</h2>
+        <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Real-time verified extractions directly synced from official channels</p>
+        <div class="results-grid">
+            <div class="result-box"><div class="operator-name">DRAGON 4D</div><div class="lucky-number">4829</div><div class="draw-time">Live Verified Today</div></div>
+            <div class="result-box"><div class="operator-name">MAGNUM 4D</div><div class="lucky-number">7156</div><div class="draw-time">Live Verified Today</div></div>
+            <div class="result-box"><div class="operator-name">SPORTS TOTO</div><div class="lucky-number">5678</div><div class="draw-time">Live Verified Today</div></div>
+            <div class="result-box"><div class="operator-name">DAMACAI 1+3D</div><div class="lucky-number">2945</div><div class="draw-time">Live Verified Today</div></div>
+        </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio">
+        <h2 class="section-title">Previous Winning Games</h2>
+        <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Celebrating historic milestone payouts and certified customer success records</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="win-badge">🎉</div>
+                <h3>Dragon Strike</h3>
+                <p>Verified client confirmation capturing the premier top-tier payout structure flawlessly.</p>
+            </div>
+            <div class="portfolio-card">
+                <div class="win-badge">🏆</div>
+                <h3>Magnum Grand</h3>
+                <p>Strategic probability allocation producing a multi-fold historic dividend win.</p>
+            </div>
+            <div class="portfolio-card">
+                <div class="win-badge">💎</div>
+                <h3>Toto Apex</h3>
+                <p>Systemic generation sequence maximizing deep combination pools securely.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Secure Enquiry Interface</h2>
+        <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Initiate an authenticated connection protocol directly with management</p>
+        
+        <div class="contact-container">
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message successfully dispatched.'); this.reset();">
+                <div class="form-group"><label>User Identity Alias</label><input type="text" placeholder="Enter your name" required></div>
+                <div class="form-group"><label>Communication Endpoint</label><input type="email" placeholder="your@email.com" required></div>
+                <div class="form-group"><label>Transmission Data Payload</label><textarea rows="5" placeholder="Type your message here..." required></textarea></div>
+                <button type="submit" class="cta-button" style="width: 100%;">Dispatch Message</button>
+            </form>
+            
+            <div class="contact-sidebar">
+                <div class="contact-method-box">
+                    <h4>Official WhatsApp Channel</h4>
+                    <p><a href="https://wa.me/60123456789" target="_blank">+60 12-345-6789</a></p>
+                </div>
+                <div class="contact-method-box">
+                    <h4>Administrative Email End</h4>
+                    <p><a href="mailto:support@malaysianlottery.com">support@malaysianlottery.com</a></p>
+                </div>
+                <div class="contact-method-box">
+                    <h4>Corporate Headquarters Location</h4>
+                    <p>Kuala Lumpur, Malaysia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Our Architecture</h4>
+                <p>Deploying elite calculation pipelines and verified localized data extractions for selective asset environments since 2008.</p>
+            </div>
+            <div class="footer-col">
+                <h4>System Directories</h4>
+                <ul>
+                    <li><a href="#home">Home Interface</a></li>
+                    <li><a href="#profile">Agent Biography</a></li>
+                    <li><a href="#services">Premium Services</a></li>
+                    <li><a href="#contact">Contact Endpoint</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MALAYSIAN LOTTERY | All Rights Reserved | Luxury Analytical Infrastructure Design</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. PARTICLES ENGINE ---
+        const canvas = document.getElementById('particleCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = canvas.offsetWidth || window.innerWidth;
+                canvas.height = canvas.offsetHeight || 500;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * 600,
+                    size: Math.random() * 3 + 1,
+                    speed: Math.random() * 0.5 + 0.2
+                });
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "rgba(197, 160, 89, 0.4)";
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    p.y -= p.speed;
+                    if (p.y < 0) p.y = canvas.height;
+                });
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+        }
+
+        // --- 2. CRASH-PROOF AUTOMATED SLIDER ---
+        let currentLayerIdx = 0;
+        const slideLayers = document.querySelectorAll('.full-slide-layer');
+        const totalLayers = slideLayers.length;
+
+        function triggerSlideTransition() {
+            if (totalLayers <= 1) return;
+            
+            // বর্তমান স্লাইড হাইড করো
+            slideLayers[currentLayerIdx].classList.remove('active');
+            
+            // ইনডেক্স পরিবর্তন করো
+            currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
+            
+            // পরবর্তী স্লাইড শো করো
+            slideLayers[currentLayerIdx].classList.add('active');
+        }
+
+        // স্লাইড শো রান করার নিয়ম (৪ সেকেন্ড পর পর লোড হবে)
+        if (totalLayers > 1) {
+            setInterval(triggerSlideTransition, 4000); 
+        }
+    </script>
+</body>
+</html>
