@@ -401,4 +401,95 @@
                 <div class="form-group"><label>USER ALIAS</label><input type="text" placeholder="Enter name" required></div>
                 <div class="form-group"><label>COMMUNICATION ROUTE</label><input type="email" placeholder="email@domain.com" required></div>
                 <div class="form-group"><label>TRANSMISSION DATA</label><textarea rows="4" placeholder="Type your message..." required></textarea></div>
-                <div class="form-group"><button type="submit" class="
+                <div class="form-group"><button type="submit" class="cta-button" style="width: 100%;">SEND INQUIRY</button></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MALAYSIAN LOTTERY | All Rights Reserved | Premium Digital Web Infrastructure</p>
+    </footer>
+
+    <script>
+        // --- 1. HTML5 CANVAS GOLDEN PARTICLES ENGINE ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 65;
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 20;
+                this.size = Math.random() * 4 + 1;
+                this.speedY = Math.random() * 0.8 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.blur = Math.random() * 4 + 2;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < 0 || this.alpha <= 0) { this.reset(); }
+            }
+            draw() {
+                ctx.save();
+                ctx.shadowBlur = this.blur;
+                ctx.shadowColor = '#FFD700';
+                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) { particles.push(new Particle()); }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+
+        // --- 2. INTELLIGENT THREE-SLIDE ENGINE ---
+        let currentLayerIdx = 0;
+        const slideLayers = document.querySelectorAll('.full-slide-layer');
+        const totalLayers = slideLayers.length;
+
+        function triggerCustomSmokyTransition() {
+            // ট্রানজিশনের সময় পারটিকেলসের স্পীড বৃদ্ধি
+            particles.forEach(p => p.speedY *= 2.5);
+
+            // বর্তমান স্লাইডটি (লেখা ও ইমেজ সহ) একসাথে স্মোকি মোশনে ফেড-আউট হবে
+            slideLayers[currentLayerIdx].classList.remove('active');
+
+            // পরবর্তী ইনডেক্সে মুভ করা
+            currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
+
+            // নতুন স্লাইড একটিভ করা (স্লাইড ২ ও ৩ এ কোনো টেক্সট আসবে না, শুধু ক্লিন ইমেজ আসবে)
+            slideLayers[currentLayerIdx].classList.add('active');
+
+            setTimeout(() => {
+                particles.forEach(p => p.speedY = Math.random() * 0.8 + 0.3);
+            }, 1500);
+        }
+
+        // প্রতি ৫ সেকেন্ড পর পর স্লাইড পরিবর্তন হবে
+        if (totalLayers > 0) {
+            setInterval(triggerCustomSmokyTransition, 5000);
+        }
+    </script>
+</body>
+</html>
