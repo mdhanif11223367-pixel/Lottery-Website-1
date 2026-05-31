@@ -87,7 +87,7 @@
             color: var(--primary-gold);
         }
 
-        /* ===== NEW FIXED HERO LAYOUT WITH DIRECT IMAGE HOLDER ===== */
+        /* ===== HERO CONTAINER WITH SMOKY SLIDESHOW ===== */
         .hero-container {
             margin-top: 75px;
             width: 100%;
@@ -97,23 +97,40 @@
             z-index: 2;
         }
 
-        /* আপনার দেওয়া লাক্সারিয়াস ইমেজটির জন্য পারফেক্ট ফ্রেম */
+        /* স্মোকি স্লাইডশোর জন্য ডেডিকেটেড ফ্রেম */
         .hero-banner-frame {
             width: 100%;
-            max-height: 550px;
+            height: 550px;
             overflow: hidden;
             position: relative;
-            display: block;
+            background: #000;
         }
 
-        .hero-banner-frame img {
+        /* স্লাইডের ইমেজগুলোর সিএসএস */
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* ইমেজ স্ক্রিন অনুযায়ী অটো ফিট হবে */
-            display: block;
+            object-fit: cover;
+            opacity: 0;
+            z-index: 1;
+            /* স্মোকি ব্লার ও স্কেল ইফেক্টের ট্রানজিশন */
+            transition: opacity 1.2s ease-in-out, filter 1.2s ease-in-out, transform 1.2s ease-in-out;
+            transform: scale(1.05);
+            filter: blur(10px) brightness(0.3); /* শুরুতে ইমেজ ব্লার ও ডার্ক থাকবে */
         }
 
-        /* ইমেজের উপরে প্রিমিয়াম ডার্ক শ্যাডো লেয়ার, যাতে টেক্সট সুন্দরভাবে পড়া যায় */
+        /* যখন স্লাইডটি একটিভ বা দৃশ্যমান হবে */
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 2;
+            transform: scale(1);
+            filter: blur(0px) brightness(1); /* স্মোক কেটে গিয়ে নিখুঁত ছবি প্রকাশ পাবে */
+        }
+
+        /* ইমেজের উপর প্রিমিয়াম ডার্ক লাক্সারিয়াস শ্যাডো লেয়ার */
         .hero-banner-frame::after {
             content: '';
             position: absolute;
@@ -121,13 +138,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.85) 100%);
+            z-index: 3;
         }
 
-        /* লেখার কন্টেন্ট বক্স */
+        /* টেক্সট কন্টেন্ট বক্স */
         .hero-text-content {
             position: absolute;
-            bottom: 10%;
+            bottom: 12%;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
@@ -146,7 +164,7 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
             color: #ffffff;
             line-height: 1.7;
@@ -175,11 +193,10 @@
             background: linear-gradient(135deg, var(--primary-gold), #FFE55C);
         }
 
-        /* ===== ANTI-BLUR PERFECT FITTED SLIDER ===== */
-        .banner-section {
-            padding: 5rem 2rem;
-            background: #0a0a0a;
-            text-align: center;
+        /* ===== SUPPORTED MALAYSIAN OPERATORS ===== */
+        .games-section {
+            padding: 6rem 2rem;
+            background: var(--dark-black);
             position: relative;
             z-index: 2;
             border-bottom: 1px solid rgba(255,215,0,0.15);
@@ -192,79 +209,6 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-
-        .banner-slider-container {
-            width: 100%;
-            max-width: 800px; 
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .banner-slider {
-            position: relative;
-            width: 100%;
-            height: 450px; 
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.85);
-            border: 3px solid var(--deep-gold);
-            background: #111111;
-        }
-
-        .banner-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-            display: none;
-            background-color: #000000;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .banner-image.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .banner-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-
-        .banner-btn {
-            padding: 0.8rem 2.2rem;
-            background: transparent;
-            color: var(--primary-gold);
-            border: 1px solid var(--deep-gold);
-            border-radius: 4px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .banner-btn:hover {
-            background: var(--deep-gold);
-            color: var(--dark-black);
-        }
-
-        /* ===== SUPPORTED MALAYSIAN OPERATORS ===== */
-        .games-section {
-            padding: 6rem 2rem;
-            background: var(--dark-black);
-            position: relative;
-            z-index: 2;
-            border-bottom: 1px solid rgba(255,215,0,0.15);
         }
 
         .games-grid {
@@ -362,15 +306,16 @@
 
         @media (max-width: 768px) {
             nav ul { display: none; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1rem; }
-            .banner-slider { height: 320px; }
+            .hero-banner-frame { height: 380px; }
+            .hero h1 { font-size: 2.1rem; }
+            .hero p { font-size: 0.95rem; }
             .contact-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAVIGATION MENU -->
     <nav>
         <div class="logo">
             <img class="logo-img" src="1000014839.png" onerror="this.onerror=null; this.src='1000014839.PNG';" alt="Logo">
@@ -378,18 +323,23 @@
         </div>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#banner">Promotions</a></li>
             <li><a href="#games">Games</a></li>
             <li><a href="#results">Live Results</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
+    <!-- NEW ADVANCED HERO SLIDESHOW COMPONENT -->
     <div class="hero-container" id="home">
         <div class="hero-banner-frame">
-            <img src="1000014883.png" id="mainHeroImage" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Premium Malaysian 4D Hub Banner">
+            <!-- এখানে আপনার অফার, গেমস ও টিপস সংক্রান্ত ছবিগুলো ক্রমান্বয়ে স্মোকি ইফেক্ট নিয়ে স্লাইড হবে -->
+            <img class="hero-slide active" src="1000014883.png" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Offer Banner 1">
+            <img class="hero-slide" src="1000014874.jpg" onerror="this.onerror=null; this.src='1000014874.png';" alt="Games Banner 2">
+            <img class="hero-slide" src="1000014875.jpg" onerror="this.onerror=null; this.src='1000014875.png';" alt="Tips Banner 3">
+            <img class="hero-slide" src="1000014876.jpg" onerror="this.onerror=null; this.src='1000014876.png';" alt="Offer Banner 4">
         </div>
         
+        <!-- ওভারলে লাক্সারিয়াস টেক্সট কন্টেন্ট -->
         <div class="hero-text-content">
             <h1>Premium Malaysian 4D Hub</h1>
             <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
@@ -397,24 +347,7 @@
         </div>
     </div>
 
-    <section class="banner-section" id="banner">
-        <div class="banner-container">
-            <h2 class="section-title">EXCLUSIVE CAMPAIGNS</h2>
-            <div class="banner-slider-container">
-                <div class="banner-slider">
-                    <img class="banner-image active" src="1000014874.jpg" id="slide0" alt="Campaign 1">
-                    <img class="banner-image" src="1000014875.jpg" id="slide1" alt="Campaign 2">
-                    <img class="banner-image" src="1000014876.jpg" id="slide2" alt="Campaign 3">
-                    <img class="banner-image" src="1000014877.jpg" id="slide3" alt="Campaign 4">
-                </div>
-            </div>
-            <div class="banner-controls">
-                <button class="banner-btn" onclick="prevBanner()">PREVIOUS</button>
-                <button class="banner-btn" onclick="nextBanner()">NEXT</button>
-            </div>
-        </div>
-    </section>
-
+    <!-- SUPPORTED OPERATORS -->
     <section class="games-section" id="games">
         <div style="text-align: center; margin-bottom: 4rem;">
             <h2 class="section-title">SUPPORTED MALAYSIAN OPERATORS</h2>
@@ -430,6 +363,7 @@
         </div>
     </section>
 
+    <!-- LIVE RESULTS MONITOR -->
     <section class="results-section" id="results">
         <div style="text-align: center; margin-bottom: 4rem;"><h2 class="section-title">LATEST LIVE CONFIRMATIONS</h2></div>
         <div class="results-grid">
@@ -440,6 +374,7 @@
         </div>
     </section>
 
+    <!-- SECURE COMMUNICATION CHANNEL -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
             <div>
@@ -464,38 +399,26 @@
     </footer>
 
     <script>
-        // SMART LOGIC: স্লাইডার ইমেজগুলোর স্বয়ংক্রিয় বড় হাতের/ছোট হাতের এক্সটেনশন হ্যান্ডেলিং
-        const sliderIds = ['slide0', 'slide1', 'slide2', 'slide3'];
-        sliderIds.forEach((id, idx) => {
-            const imgEl = document.getElementById(id);
-            let baseName = `100001487${4 + idx}`;
+        // SMOKY FADE SLIDESHOW ENGINE
+        let currentSlideIdx = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const totalSlides = heroSlides.length;
+
+        function runSmokySlideshow() {
+            // বর্তমান স্লাইডটি স্মোকি ফেড-আউট হবে
+            heroSlides[currentSlideIdx].classList.remove('active');
             
-            imgEl.onerror = function() {
-                let currentSrc = imgEl.getAttribute('src');
-                if (currentSrc.endsWith('.jpg')) {
-                    imgEl.src = baseName + '.JPG';
-                } else if (currentSrc.endsWith('.JPG')) {
-                    imgEl.src = baseName + '.png';
-                } else if (currentSrc.endsWith('.png')) {
-                    imgEl.src = baseName + '.PNG';
-                }
-            };
-        });
-
-        // High-Res Image Slider Engine
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.banner-image');
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            if (index >= slides.length) { slideIndex = 0; }
-            if (index < 0) { slideIndex = slides.length - 1; }
-            slides[slideIndex].classList.add('active');
+            // পরবর্তী স্লাইড ইনডেক্স ক্যালকুলেশন
+            currentSlideIdx = (currentSlideIdx + 1) % totalSlides;
+            
+            // নতুন স্লাইডটি স্মোক কেটে উজ্জ্বল হয়ে প্রকাশ পাবে
+            heroSlides[currentSlideIdx].classList.add('active');
         }
 
-        function nextBanner() { slideIndex++; showSlide(slideIndex); }
-        function prevBanner() { slideIndex--; showSlide(slideIndex); }
-        setInterval(nextBanner, 5000);
+        // প্রতি ৪ সেকেন্ড পর পর ব্যানারগুলো স্মোকি স্টাইলে পরিবর্তন হবে
+        if(totalSlides > 0) {
+            setInterval(runSmokySlideshow, 4000);
+        }
     </script>
 </body>
 </html>
