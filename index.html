@@ -87,7 +87,7 @@
             color: var(--primary-gold);
         }
 
-        /* ===== ADVANCED FULL LAYER SLIDESHOW SECTOR ===== */
+        /* ===== ADVANCED HERO VIEWPORT WITH CANVAS ===== */
         .hero-view-port {
             margin-top: 75px;
             width: 100%;
@@ -98,7 +98,7 @@
             border-bottom: 3px solid var(--deep-gold);
         }
 
-        /* ক্যানভাস লেয়ার যা পারটিকেলস এবং স্মোক জেনারেট করবে */
+        /* পারটিকেলস এবং স্মোক ক্যানভাস লেয়ার */
         #particleCanvas {
             position: absolute;
             top: 0;
@@ -109,7 +109,7 @@
             pointer-events: none;
         }
 
-        /* পুরো ফুল লেয়ার (টেক্সট + ইমেজ একসাথে) */
+        /* ফুল স্লাইড লেয়ার কনটেইনার */
         .full-slide-layer {
             position: absolute;
             top: 0;
@@ -121,21 +121,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* পারটিকেলস স্মোকি ডিজল্ভ ট্রানজিশন ইফেক্ট */
-            transition: opacity 1.4s ease-in-out, filter 1.4s ease-in-out, transform 1.4s ease-in-out;
+            /* স্মোকি মোশন ট্রানজিশন */
+            transition: opacity 1.5s ease-in-out, filter 1.5s ease-in-out, transform 1.5s ease-in-out;
             transform: scale(1.03);
-            filter: blur(15px) brightness(0.2) contrast(1.2);
+            filter: blur(15px) brightness(0.2);
         }
 
-        /* একটিভ স্লাইড যা পুরো স্পষ্টভাবে দেখা যাবে */
+        /* একটিভ স্লাইড ভিউ */
         .full-slide-layer.active {
             opacity: 1;
             z-index: 2;
             transform: scale(1);
-            filter: blur(0px) brightness(1) contrast(1);
+            filter: blur(0px) brightness(1);
         }
 
-        /* স্লাইডের ভেতরের ব্যাকগ্রাউন্ড ইমেজ */
         .slide-bg-img {
             position: absolute;
             top: 0;
@@ -145,8 +144,8 @@
             object-fit: cover;
         }
 
-        /* ইমেজের উপরে লাক্সারিয়াস গ্লোয়িং ডার্ক গ্রেডিয়েন্ট */
-        .full-slide-layer::after {
+        /* প্রথম স্লাইডের ইমেজের ওপর লাক্সারিয়াস ডার্ক গ্রেডিয়েন্ট (লেখাটি ফুটিয়ে তোলার জন্য) */
+        .first-slide::after {
             content: '';
             position: absolute;
             top: 0;
@@ -157,7 +156,7 @@
             z-index: 2;
         }
 
-        /* স্ক্রিনশট 1000014884.jpg এর নিখুঁত টেক্সট লেআউট ফরম্যাট */
+        /* ওরিজিনাল টেক্সট ফরম্যাট */
         .original-text-box {
             position: relative;
             z-index: 3;
@@ -343,14 +342,13 @@
         </ul>
     </nav>
 
-    <!-- PERFECT FUSION: SMOKY PARTICLES INTERCHANGEABLE COVER SLIDER -->
+    <!-- PERFECT FUSION: SMOKY PARTICLES INTELLIGENT COVERS -->
     <div class="hero-view-port" id="home">
-        <!-- ইন্টারেক্টিভ কণা এবং ধোঁয়া তৈরির ক্যানভাস লেয়ার -->
         <canvas id="particleCanvas"></canvas>
 
-        <!-- স্লাইড ১: মেইন ব্যানার + মূল ওরিজিনাল টেক্সট ফরম্যাট -->
-        <div class="full-slide-layer active">
-            <img class="slide-bg-img" src="1000014883.png" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Cover 1">
+        <!-- স্লাইড ১: মেইন ব্যাকগ্রাউন্ড + মূল টেক্সট ফরম্যাট (এটি ফেড-আউট হয়ে চলে যাবে) -->
+        <div class="full-slide-layer first-slide active">
+            <img class="slide-bg-img" src="1000014833.png" onerror="this.onerror=null; this.src='1000014883.png';" alt="Cover 1">
             <div class="original-text-box">
                 <h1>Premium Malaysian 4D Hub</h1>
                 <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
@@ -358,44 +356,9 @@
             </div>
         </div>
 
-        <!-- স্লাইড ২: আপনার দেওয়া নতুন ড্রাগন টিপস ব্যানার (1000014885.png) + টেক্সট ফরম্যাট -->
+        <!-- স্লাইড ২: আপনার দেওয়া ড্রাগন টিপস ব্যানার (এর ওপর কোনো টেক্সট আসবে না) -->
         <div class="full-slide-layer">
-            <img class="slide-bg-img" src="1000014885.png" onerror="this.onerror=null; this.src='1000014885.PNG';" alt="Cover 2">
-            <div class="original-text-box">
-                <h1>Premium Malaysian 4D Hub</h1>
-                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
-                <a href="#contact" class="cta-button">Connect Securely</a>
-            </div>
-        </div>
-
-        <!-- স্লাইড ৩: পরবর্তী ইমেজ ৩ + টেক্সট ফরম্যাট -->
-        <div class="full-slide-layer">
-            <img class="slide-bg-img" src="1000014874.jpg" onerror="this.onerror=null; this.src='1000014874.png';" alt="Cover 3">
-            <div class="original-text-box">
-                <h1>Premium Malaysian 4D Hub</h1>
-                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
-                <a href="#contact" class="cta-button">Connect Securely</a>
-            </div>
-        </div>
-
-        <!-- স্লাইড ৪: পরবর্তী ইমেজ ৪ + টেক্সট ফরম্যাট -->
-        <div class="full-slide-layer">
-            <img class="slide-bg-img" src="1000014875.jpg" onerror="this.onerror=null; this.src='1000014875.png';" alt="Cover 4">
-            <div class="original-text-box">
-                <h1>Premium Malaysian 4D Hub</h1>
-                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
-                <a href="#contact" class="cta-button">Connect Securely</a>
-            </div>
-        </div>
-
-        <!-- স্লাইড ৫: পরবর্তী ইমেজ ৫ + টেক্সট ফরম্যাট -->
-        <div class="full-slide-layer">
-            <img class="slide-bg-img" src="1000014876.jpg" onerror="this.onerror=null; this.src='1000014876.png';" alt="Cover 5">
-            <div class="original-text-box">
-                <h1>Premium Malaysian 4D Hub</h1>
-                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
-                <a href="#contact" class="cta-button">Connect Securely</a>
-            </div>
+            <img class="slide-bg-img" src="1000014885.png" onerror="this.onerror=null; this.src='1000014885.PNG';" alt="Dragon 4D Tips">
         </div>
     </div>
 
@@ -450,7 +413,7 @@
         <p>&copy; 2026 MALAYSIAN LOTTERY | All Rights Reserved | Premium Digital Web Infrastructure</p>
     </footer>
 
-    <!-- HIGH PERFORMANCE CANVAS PARTICLES & FUSION SLIDER SCRIPT -->
+    <!-- HIGH PERFORMANCE CANVAS PARTICLES & TWO-SLIDE ENGINE -->
     <script>
         // --- 1. HTML5 CANVAS GOLDEN PARTICLES ENGINE ---
         const canvas = document.getElementById('particleCanvas');
@@ -464,12 +427,10 @@
         window.addEventListener('resize', resizeCanvas);
 
         const particles = [];
-        const particleCount = 65; // গোল্ডেন স্মোক কণার সংখ্যা
+        const particleCount = 65;
 
         class Particle {
-            constructor() {
-                this.reset();
-            }
+            constructor() { this.reset(); }
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = canvas.height + Math.random() * 20;
@@ -482,15 +443,12 @@
             update() {
                 this.y -= this.speedY;
                 this.x += this.speedX;
-                // উপরে উঠার সাথে সাথে কণাগুলো বাতাসে মিলিয়ে যাওয়ার ইফেক্ট
-                if (this.y < 0 || this.alpha <= 0) {
-                    this.reset();
-                }
+                if (this.y < 0 || this.alpha <= 0) { this.reset(); }
             }
             draw() {
                 ctx.save();
                 ctx.shadowBlur = this.blur;
-                ctx.shadowColor = '#FFD700'; // গোল্ডেন কালার স্মোক গ্লেজ
+                ctx.shadowColor = '#FFD700';
                 ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -499,49 +457,42 @@
             }
         }
 
-        // কণাগুলো ইনিশিয়ালাইজ করা
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
+        for (let i = 0; i < particleCount; i++) { particles.push(new Particle()); }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
         animateParticles();
 
 
-        // --- 2. MULTI LAYER INTEGRATED SLIDESHOW ENGINE ---
+        // --- 2. INTELLIGENT TWO-SLIDE ENGINE ---
         let currentLayerIdx = 0;
         const slideLayers = document.querySelectorAll('.full-slide-layer');
         const totalLayers = slideLayers.length;
 
-        function triggerSmokyLayerTransition() {
-            // ১. একটিভ লেয়ারের কণা স্পীড সাময়িক বাড়িয়ে স্মোকি ফেড-আউট শুরু করা
+        function triggerCustomSmokyTransition() {
+            // ট্রানজিশনের সময় পারটিকেলসের মোশন বাড়ানো
             particles.forEach(p => p.speedY *= 2.5);
 
-            // ২. বর্তমান লেখা ও ব্যাকগ্রাউন্ড একসাথে ফেড-আউট করে দেওয়া
+            // বর্তমান স্লাইড (লেখা ও ব্যাকগ্রাউন্ড ইমেজ সহ) একসাথে রিমুভ/ফেড-আউট হয়ে যাবে
             slideLayers[currentLayerIdx].classList.remove('active');
 
-            // ৩. পরবর্তী ইনডেক্স সেট করা
+            // স্লাইড ইনডেক্স পরিবর্তন
             currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
 
-            // ৪. নতুন লেখা ও ব্যাকগ্রাউন্ড ইমেজ (যেমন: ড্রাগন ব্যানার) একসাথে স্মুথলি প্রকাশ পাওয়া
+            // পরবর্তী স্লাইড একটিভ করা (স্লাইড ২-এ কোনো টেক্সট ওভারলে নেই, তাই শুধু ক্লিন ইমেজ আসবে)
             slideLayers[currentLayerIdx].classList.add('active');
 
-            // ৫. ট্রানজিশন শেষ হলে পারটিকেলসের স্পীড আবার নরমাল করে দেওয়া
             setTimeout(() => {
                 particles.forEach(p => p.speedY = Math.random() * 0.8 + 0.3);
-            }, 1400);
+            }, 1500);
         }
 
-        // প্রতি ৫ সেকেন্ড পর পর লেখা ও ইমেজ একসাথে পারটিকেলস ট্রানজিশন নিয়ে চেঞ্জ হবে
+        // প্রতি ৫ সেকেন্ড পর পর চমৎকার স্মোকি ইফেক্ট সহ স্লাইড পরিবর্তন হবে
         if (totalLayers > 0) {
-            setInterval(triggerSmokyLayerTransition, 5000);
+            setInterval(triggerCustomSmokyTransition, 5000);
         }
     </script>
 </body>
