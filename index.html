@@ -30,7 +30,7 @@
             scroll-behavior: smooth;
         }
 
-        /* ===== MALAYSIAN TRADITIONAL SONGKET PATTERN BACKGROUND ===== */
+        /* ===== BACKGROUND PATTERN ===== */
         body {
             position: relative;
         }
@@ -43,45 +43,17 @@
             width: 100%;
             height: 100%;
             background-color: #0a0a0a;
-            /* মালয়েশিয়ান ঐতিহ্যবাহী গোল্ডেন টেক্সচার ইফেক্ট */
             background-image: 
-                radial-gradient(var(--deep-gold) 1.5px, transparent 0),
-                radial-gradient(var(--deep-gold) 1.5px, transparent 0);
+                radial-gradient(var(--deep-gold) 1px, transparent 0),
+                radial-gradient(var(--deep-gold) 1px, transparent 0);
             background-size: 32px 32px;
             background-position: 0 0, 16px 16px;
-            opacity: 0.05;
+            opacity: 0.03;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* ===== GOLDEN PARTICLE BG ===== */
-        .particle-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            opacity: 0.4;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-            animation: float-particle 20s infinite ease-in-out;
-        }
-
-        @keyframes float-particle {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
-            50% { transform: translateY(-100px) translateX(50px); opacity: 0.1; }
-        }
-
-        /* ===== PREMIUM NAVIGATION BAR ===== */
+        /* ===== NAVIGATION BAR ===== */
         nav {
             position: fixed;
             top: 0;
@@ -138,52 +110,58 @@
             color: var(--primary-gold);
         }
 
-        /* ===== NEWLY DESIGNED LUXURIOUS COVER PHOTO (HERO SECTION) ===== */
+        /* ===== EXCLUSIVE DESIGNED HERO IMAGE COVER BANNER ===== */
         .hero {
             margin-top: 75px;
-            min-height: 580px;
+            min-height: 520px;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
             position: relative;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             border-bottom: 3px solid var(--deep-gold);
-            /* লাক্সারি কাভার ফটো ডিজাইন: মালয়েশিয়ান ট্র্যাডিশনাল প্যাটার্ন ওভারলে থিম */
+            
+            /* মালয়েশিয়ান ট্র্যাডিশনাল লাক্সারি ডার্ক গোল্ড মেটালিক থিম কাভার ফটো */
             background: 
-                linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23C5A059' fill-opacity='0.15'/%3E%3C/svg%3E"),
-                linear-gradient(45deg, #1a150b 0%, #0a0a0a 100%);
-            background-size: auto, 60px 60px, auto;
-            box-shadow: inset 0 0 100px rgba(197, 160, 89, 0.2);
+                linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.92)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23C5A059' fill-opacity='0.12'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l6-6h2l-8 8V8zm0 4l8-8h2l-10 10V12zm0 4l10-10h2l-12 12V16zm0 4l12-12h2l-14 14V20zm0 4l14-14h2l-16 16V24zm0 4l16-16h2l-18 18V28zm0 4l18-18h2l-20 20V32zm0 4l20-20h2l-22 22V36zm0 4l22-22h2l-24 24V40z'/%3E%3C/g%3E%3C/svg%3E"),
+                linear-gradient(135deg, #1f180d 0%, #070707 50%, #17120a 100%);
+            box-shadow: inset 0 0 120px rgba(197, 160, 89, 0.3);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(10,10,10,1), transparent);
+            pointer-events: none;
         }
 
         .hero-content {
             max-width: 850px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            z-index: 5;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3.6rem;
+            font-size: 3.8rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
             color: var(--primary-gold);
             letter-spacing: 3px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 0 5px rgba(255, 215, 0, 0.2);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 4px 10px rgba(0,0,0,0.8);
         }
 
         .hero p {
             font-size: 1.25rem;
             margin-bottom: 2.5rem;
-            color: #dddddd;
+            color: #e5e5e5;
             line-height: 1.8;
-            font-weight: 400;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
         .cta-button {
@@ -203,48 +181,67 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
             background: linear-gradient(135deg, var(--primary-gold), #FFE55C);
         }
 
-        /* ===== HIGH RESOLUTION SLIDER SECTION ===== */
+        /* ===== FIXED HIGH RESOLUTION SLIDER SECTION ===== */
         .banner-section {
             padding: 5rem 2rem;
-            background: #121212;
+            background: #0a0a0a;
             text-align: center;
             position: relative;
             z-index: 2;
             border-bottom: 1px solid rgba(255,215,0,0.15);
         }
 
-        .banner-container {
-            max-width: 1200px;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-gold);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* স্লাইডশোকন্টেইনার বক্স - ফিক্সড সাইজ রেসিও */
+        .banner-slider-container {
+            width: 100%;
+            max-width: 680px; /* রেজোলিউশন ফাটা রোধ করতে কার্ডের মূল চওড়া সাইজ */
             margin: 0 auto;
+            position: relative;
         }
 
         .banner-slider {
             position: relative;
             width: 100%;
-            max-width: 1000px;
-            height: 480px;
-            margin: 0 auto;
+            height: 0;
+            padding-bottom: 68%; /* ইমেজ রেশিও পারফেক্ট রাখার জন্য প্রো-ক্যালকুলেশন */
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             border: 3px solid var(--deep-gold);
-            background: #000000;
+            background: #121212;
         }
 
         .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* ইমেজ কেটে যাওয়া বা চ্যাপ্টা হওয়া রোধ করবে */
-            background: #000000;
+            object-fit: fill; /* ছবি যাতে কেটে না যায় এবং ফ্রেমের ভেতর ১০০% পারফেক্ট ফিট হয় */
             display: none;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .banner-image.active {
             display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .banner-controls {
@@ -447,15 +444,13 @@
         @media (max-width: 768px) {
             nav ul { display: none; }
             .hero h1 { font-size: 2.3rem; }
-            .banner-slider { height: 280px; }
             .contact-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div class="particle-bg" id="particleBg"></div>
-
+    <!-- NAVIGATION MENU -->
     <nav>
         <div class="logo">
             <img class="logo-img" src="1000014839.png" onerror="this.src='1000014839.PNG';" alt="Logo">
@@ -470,22 +465,27 @@
         </ul>
     </nav>
 
+    <!-- EXCLUSIVE MALAYSIAN COVER BANNER PHOTO DESIGN (HERO SECTION) -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>PREMIUM MALAYSIAN 4D HUB</h1>
+            <h1>Premium Malaysian 4D Hub</h1>
             <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
             <a href="#contact" class="cta-button">Connect Securely</a>
         </div>
     </section>
 
+    <!-- FIXED & PERFECTLY FITTED CAMPAIGNS SLIDER -->
     <section class="banner-section" id="banner">
         <div class="banner-container">
             <h2 class="section-title">EXCLUSIVE CAMPAIGNS</h2>
-            <div class="banner-slider">
-                <img class="banner-image active" src="1000014874.jpg" onerror="this.src='1000014874.JPG';" alt="Campaign 1">
-                <img class="banner-image" src="1000014875.jpg" onerror="this.src='1000014875.JPG';" alt="Campaign 2">
-                <img class="banner-image" src="1000014876.jpg" onerror="this.src='1000014876.JPG';" alt="Campaign 3">
-                <img class="banner-image" src="1000014877.jpg" onerror="this.src='1000014877.JPG';" alt="Campaign 4">
+            <div class="banner-slider-container">
+                <div class="banner-slider">
+                    <!-- ব্যানার ইমেজগুলোর জন্য রেশিও এবং ফিটিং ফিক্স করা হয়েছে -->
+                    <img class="banner-image active" src="1000014874.jpg" onerror="this.src='1000014874.JPG';" alt="Campaign 1">
+                    <img class="banner-image" src="1000014875.jpg" onerror="this.src='1000014875.JPG';" alt="Campaign 2">
+                    <img class="banner-image" src="1000014876.jpg" onerror="this.src='1000014876.JPG';" alt="Campaign 3">
+                    <img class="banner-image" src="1000014877.jpg" onerror="this.src='1000014877.JPG';" alt="Campaign 4">
+                </div>
             </div>
             <div class="banner-controls">
                 <button class="banner-btn" onclick="prevBanner()">PREVIOUS</button>
@@ -494,6 +494,7 @@
         </div>
     </section>
 
+    <!-- ALL MALAYSIAN GAMES -->
     <section class="games-section" id="games">
         <div style="text-align: center; margin-bottom: 4rem;">
             <h2 class="section-title">SUPPORTED MALAYSIAN OPERATORS</h2>
@@ -540,6 +541,7 @@
         </div>
     </section>
 
+    <!-- LIVE RESULTS MONITOR -->
     <section class="results-section" id="results">
         <div style="text-align: center; margin-bottom: 4rem;">
             <h2 class="section-title">LATEST LIVE CONFIRMATIONS</h2>
@@ -568,6 +570,7 @@
         </div>
     </section>
 
+    <!-- SECURE COMMUNICATION CHANNEL -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
             <div>
@@ -593,20 +596,6 @@
     </footer>
 
     <script>
-        // Background Floating Particles
-        function initParticles() {
-            const container = document.getElementById('particleBg');
-            for (let i = 0; i < 30; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random() * window.innerWidth + 'px';
-                p.style.top = Math.random() * window.innerHeight + 'px';
-                p.style.animationDelay = Math.random() * 8 + 's';
-                container.appendChild(p);
-            }
-        }
-        initParticles();
-
         // High-Res Image Slider Engine
         let slideIndex = 0;
         const slides = document.querySelectorAll('.banner-image');
