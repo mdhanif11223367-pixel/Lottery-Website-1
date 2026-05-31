@@ -144,7 +144,7 @@
             object-fit: cover;
         }
 
-        /* প্রথম স্লাইডের ইমেজের ওপর লাক্সারিয়াস ডার্ক গ্রেডিয়েন্ট (লেখাটি ফুটিয়ে তোলার জন্য) */
+        /* প্রথম স্লাইডের ইমেজের ওপর লাক্সারিয়াস ডার্ক গ্রেডিয়েন্ট */
         .first-slide::after {
             content: '';
             position: absolute;
@@ -328,7 +328,6 @@
 </head>
 <body>
 
-    <!-- NAVIGATION MENU -->
     <nav>
         <div class="logo">
             <img class="logo-img" src="1000014839.png" onerror="this.onerror=null; this.src='1000014839.PNG';" alt="Logo">
@@ -342,13 +341,11 @@
         </ul>
     </nav>
 
-    <!-- PERFECT FUSION: SMOKY PARTICLES INTELLIGENT COVERS -->
     <div class="hero-view-port" id="home">
         <canvas id="particleCanvas"></canvas>
 
-        <!-- স্লাইড ১: মেইন ব্যাকগ্রাউন্ড + মূল টেক্সট ফরম্যাট (এটি ফেড-আউট হয়ে চলে যাবে) -->
         <div class="full-slide-layer first-slide active">
-            <img class="slide-bg-img" src="1000014833.png" onerror="this.onerror=null; this.src='1000014883.png';" alt="Cover 1">
+            <img class="slide-bg-img" src="1000014883.png" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Cover 1">
             <div class="original-text-box">
                 <h1>Premium Malaysian 4D Hub</h1>
                 <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
@@ -356,13 +353,15 @@
             </div>
         </div>
 
-        <!-- স্লাইড ২: আপনার দেওয়া ড্রাগন টিপস ব্যানার (এর ওপর কোনো টেক্সট আসবে না) -->
         <div class="full-slide-layer">
             <img class="slide-bg-img" src="1000014885.png" onerror="this.onerror=null; this.src='1000014885.PNG';" alt="Dragon 4D Tips">
         </div>
+
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014886.png" onerror="this.onerror=null; this.src='1000014886.PNG';" alt="Next Premium Ad">
+        </div>
     </div>
 
-    <!-- SUPPORTED OPERATORS -->
     <section class="games-section" id="games">
         <div style="text-align: center; margin-bottom: 4rem;">
             <h2 class="section-title">SUPPORTED MALAYSIAN OPERATORS</h2>
@@ -378,7 +377,6 @@
         </div>
     </section>
 
-    <!-- LIVE RESULTS MONITOR -->
     <section class="results-section" id="results">
         <div style="text-align: center; margin-bottom: 4rem;"><h2 class="section-title">LATEST LIVE CONFIRMATIONS</h2></div>
         <div class="results-grid">
@@ -389,7 +387,6 @@
         </div>
     </section>
 
-    <!-- SECURE COMMUNICATION CHANNEL -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
             <div>
@@ -404,96 +401,4 @@
                 <div class="form-group"><label>USER ALIAS</label><input type="text" placeholder="Enter name" required></div>
                 <div class="form-group"><label>COMMUNICATION ROUTE</label><input type="email" placeholder="email@domain.com" required></div>
                 <div class="form-group"><label>TRANSMISSION DATA</label><textarea rows="4" placeholder="Type your message..." required></textarea></div>
-                <div class="form-group"><button type="submit" class="cta-button" style="width: 100%;">SEND INQUIRY</button></div>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 MALAYSIAN LOTTERY | All Rights Reserved | Premium Digital Web Infrastructure</p>
-    </footer>
-
-    <!-- HIGH PERFORMANCE CANVAS PARTICLES & TWO-SLIDE ENGINE -->
-    <script>
-        // --- 1. HTML5 CANVAS GOLDEN PARTICLES ENGINE ---
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const particles = [];
-        const particleCount = 65;
-
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + Math.random() * 20;
-                this.size = Math.random() * 4 + 1;
-                this.speedY = Math.random() * 0.8 + 0.3;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.alpha = Math.random() * 0.5 + 0.1;
-                this.blur = Math.random() * 4 + 2;
-            }
-            update() {
-                this.y -= this.speedY;
-                this.x += this.speedX;
-                if (this.y < 0 || this.alpha <= 0) { this.reset(); }
-            }
-            draw() {
-                ctx.save();
-                ctx.shadowBlur = this.blur;
-                ctx.shadowColor = '#FFD700';
-                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) { particles.push(new Particle()); }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-
-        // --- 2. INTELLIGENT TWO-SLIDE ENGINE ---
-        let currentLayerIdx = 0;
-        const slideLayers = document.querySelectorAll('.full-slide-layer');
-        const totalLayers = slideLayers.length;
-
-        function triggerCustomSmokyTransition() {
-            // ট্রানজিশনের সময় পারটিকেলসের মোশন বাড়ানো
-            particles.forEach(p => p.speedY *= 2.5);
-
-            // বর্তমান স্লাইড (লেখা ও ব্যাকগ্রাউন্ড ইমেজ সহ) একসাথে রিমুভ/ফেড-আউট হয়ে যাবে
-            slideLayers[currentLayerIdx].classList.remove('active');
-
-            // স্লাইড ইনডেক্স পরিবর্তন
-            currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
-
-            // পরবর্তী স্লাইড একটিভ করা (স্লাইড ২-এ কোনো টেক্সট ওভারলে নেই, তাই শুধু ক্লিন ইমেজ আসবে)
-            slideLayers[currentLayerIdx].classList.add('active');
-
-            setTimeout(() => {
-                particles.forEach(p => p.speedY = Math.random() * 0.8 + 0.3);
-            }, 1500);
-        }
-
-        // প্রতি ৫ সেকেন্ড পর পর চমৎকার স্মোকি ইফেক্ট সহ স্লাইড পরিবর্তন হবে
-        if (totalLayers > 0) {
-            setInterval(triggerCustomSmokyTransition, 5000);
-        }
-    </script>
-</body>
-</html>
+                <div class="form-group"><button type="submit" class="
