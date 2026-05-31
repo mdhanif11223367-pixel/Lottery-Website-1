@@ -26,7 +26,6 @@
         html, body {
             width: 100%;
             height: 100%;
-            /* শতভাগ সেরিফ ফন্ট আর্কিটেকচার */
             font-family: 'Times New Roman', Times, Georgia, serif;
             background: var(--dark-black);
             color: var(--white);
@@ -92,18 +91,18 @@
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        /* ===== ADVANCED HERO VIEWPORT WITH CANVAS ===== */
+        /* ===== ADVANCED RESPONSIVE HERO VIEWPORT ===== */
         .hero-view-port {
             margin-top: 75px;
             width: 100%;
-            height: 620px;
+            height: 620px; /* ডেস্কটপ স্ট্যান্ডার্ড হাইট */
             position: relative;
             overflow: hidden;
             background: #000;
             border-bottom: 3px solid var(--deep-gold);
         }
 
-        /* পারটিকেলস এবং স্মোক ক্যানভাস লেয়ার */
+        /* ক্যানভাস লেয়ার */
         #particleCanvas {
             position: absolute;
             top: 0;
@@ -127,8 +126,9 @@
             align-items: center;
             justify-content: center;
             transition: opacity 1.5s ease-in-out, filter 1.5s ease-in-out, transform 1.5s ease-in-out;
-            transform: scale(1.03);
+            transform: scale(1.02);
             filter: blur(15px) brightness(0.2);
+            background: #000;
         }
 
         /* একটিভ স্লাইড ভিউ */
@@ -139,16 +139,18 @@
             filter: blur(0px) brightness(1);
         }
 
+        /* রেসপন্সিভ ইমেজ পলিসি: কোনো ডিভাইস বা রেজোলিউশনেই ডিজাইন কাটবে না */
         .slide-bg-img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* ইমেজ ক্রপ হওয়া রোধ করবে */
+            background-color: #000; /* অবজেক্ট ফিটের গ্যাপ কালো ব্যাকগ্রাউন্ড দিয়ে কভার করবে */
         }
 
-        /* প্রথম স্লাইডের ইমেজের ওপর লাক্সারিয়াস ডার্ক গ্রেডিয়েন্ট */
+        /* প্রথম স্লাইডের ইমেজের ওভারলে */
         .first-slide::after {
             content: '';
             position: absolute;
@@ -156,11 +158,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.7) 100%);
             z-index: 2;
         }
 
-        /* ওরিজিনাল টেক্সট ফরম্যাট (১ম স্লাইডেই শুধু থাকবে এবং ফেড আউট হবে) */
+        /* ওরিজিনাল টেক্সট বক্স */
         .original-text-box {
             position: relative;
             z-index: 3;
@@ -521,21 +523,32 @@
             font-size: 1rem;
         }
 
-        /* ===== RESPONSIVE MEDIA ARCHITECTURE ===== */
+        /* ===== RESPONSIVE MEDIA ARCHITECTURE (ANDROID & MOBILE OPTIMIZED) ===== */
+        @media (max-width: 992px) {
+            .hero-view-port { height: 480px; } /* ট্যাবলেটের জন্য ব্যানার হাইট */
+        }
+
         @media (max-width: 768px) {
             nav ul { display: none; }
-            .hero-view-port { height: 460px; }
-            .original-text-box h1 { font-size: 2.5rem; }
-            .original-text-box p { font-size: 1.1rem; }
-            .profile-container, .contact-container { grid-template-columns: 1fr; }
-            .section-title { font-size: 2.2rem; }
+            .hero-view-port { height: 280px; margin-top: 70px; } /* অ্যান্ড্রয়েড ফোনে পারফেক্ট এসপেক্ট রেশিও */
+            .original-text-box h1 { font-size: 1.8rem; margin-bottom: 0.6rem; }
+            .original-text-box p { font-size: 0.9rem; margin-bottom: 1.2rem; line-height: 1.5; }
+            .cta-button { padding: 0.6rem 1.8rem; font-size: 0.85rem; }
+            .profile-container, .contact-container { grid-template-columns: 1fr; gap: 2rem; }
+            .section-title { font-size: 2.1rem; }
+            .stats-grid { gap: 0.8rem; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-label { font-size: 0.75rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-view-port { height: 210px; } /* ছোট অ্যান্ড্রয়েড ডিভাইসের জন্য রেস্পন্সিভ স্কেলিং */
         }
     </style>
 </head>
 <body>
 
-    <div class="particle-bg"></div>
-
+    <!-- NAVIGATION MENU -->
     <nav>
         <div class="logo">
             <img class="logo-img" src="1000014839.png" onerror="this.onerror=null; this.src='1000014839.PNG';" alt="Logo">
@@ -551,11 +564,13 @@
         </ul>
     </nav>
 
+    <!-- RE-ENGINEERED 5-SLIDE PREMIUM LENDING LOOP (NON-CUT ARCHITECTURE) -->
     <div class="hero-view-port" id="home">
         <canvas id="particleCanvas"></canvas>
 
+        <!-- স্লাইড ১: মূল কভার ব্যাউন্ড (টেক্সটসহ লুপ আউট হবে) -->
         <div class="full-slide-layer first-slide active">
-            <img class="slide-bg-img" src="1000014883.png" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Cover 1">
+            <img class="slide-bg-img" src="1000014839.png" onerror="this.onerror=null; this.src='1000014839.PNG';" alt="Cover 1">
             <div class="original-text-box">
                 <h1>Win Big With Malaysian 4D</h1>
                 <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
@@ -563,15 +578,28 @@
             </div>
         </div>
 
+        <!-- স্লাইড ২: ৪ডি ড্রাগন টিপস ব্যানার (ক্লিন ভিউ) -->
         <div class="full-slide-layer">
             <img class="slide-bg-img" src="1000014885.png" onerror="this.onerror=null; this.src='1000014885.PNG';" alt="Dragon 4D Tips">
         </div>
 
+        <!-- স্লাইড ৩: ৯ নাইন লোটো ব্যানার (ক্লিন ভিউ) -->
         <div class="full-slide-layer">
-            <img class="slide-bg-img" src="1000014886.png" onerror="this.onerror=null; this.src='1000014886.PNG';" alt="Next Premium Ad">
+            <img class="slide-bg-img" src="1000014886.png" onerror="this.onerror=null; this.src='1000014886.PNG';" alt="Nine Lotto Premium">
+        </div>
+
+        <!-- স্লাইড ৪: নতুন ম্যাগনাম ৪ডি লাক্সারি ব্যানার (ক্লিন ভিউ) -->
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014890.jpg" onerror="this.onerror=null; this.src='1000014890.JPG';" alt="Magnum 4D Royal Banner">
+        </div>
+
+        <!-- স্লাইড ৫: নতুন টোটো ৪ডি মেটালিক বল ব্যানার (ক্লিন ভিউ) -->
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014891.jpg" onerror="this.onerror=null; this.src='1000014891.JPG';" alt="Sports Toto 4D Elite Banner">
         </div>
     </div>
 
+    <!-- AGENT PROFILE / BIOGRAPHY SECTION -->
     <section class="profile-section" id="profile">
         <div class="profile-container">
             <div class="profile-image-box">
@@ -601,6 +629,7 @@
         </div>
     </section>
 
+    <!-- PREMIUM SOLUTIONS / GAME ARCHITECTURES -->
     <section class="services-section" id="services">
         <h2 class="section-title">Our Premium Services</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 4rem;">Comprehensive analytical models engineered for maximum gaming potential</p>
@@ -639,6 +668,7 @@
         </div>
     </section>
 
+    <!-- LIVE RESULTS MONITOR -->
     <section class="results-section" id="results">
         <h2 class="section-title">Latest Live Confirmations</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Real-time verified extractions directly synced from official channels</p>
@@ -650,6 +680,7 @@
         </div>
     </section>
 
+    <!-- PORTFOLIO / HISTORIC WINS CELEBRATION -->
     <section class="portfolio-section" id="portfolio">
         <h2 class="section-title">Previous Winning Games</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Celebrating historic milestone payouts and certified customer success records</p>
@@ -673,6 +704,7 @@
         </div>
     </section>
 
+    <!-- SECURE GATEWAY ENQUIRY CHANNEL -->
     <section class="contact-section" id="contact">
         <h2 class="section-title">Secure Enquiry Interface</h2>
         <p style="text-align: center; color: #888; font-size: 1.2rem; margin-bottom: 2rem;">Initiate an authenticated connection protocol directly with management</p>
@@ -702,6 +734,7 @@
         </div>
     </section>
 
+    <!-- FOOTER ARCHITECTURE -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -732,8 +765,9 @@
         </div>
     </footer>
 
+    <!-- INTERACTIVE PERFORMANCE CANVAS & 5-SLIDE ENGINE -->
     <script>
-        // --- ১. HTML5 CANVAS GOLDEN PARTICLES ANIMATION ENGINE ---
+        // --- 1. HTML5 CANVAS GOLDEN PARTICLES ENGINE ---
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -745,7 +779,7 @@
         window.addEventListener('resize', resizeCanvas);
 
         const particles = [];
-        const particleCount = 75; // এনিমেশন পারফরম্যান্স অপ্টিমাইজড কাউন্ট
+        const particleCount = 75;
 
         class Particle {
             constructor() { this.reset(); }
@@ -785,36 +819,36 @@
         animateParticles();
 
 
-        // --- ২. AUTOMATED SMOKY THREE-SLIDE ENGINE ---
+        // --- 2. AUTOMATED 5-SLIDE ENGINE ---
         let currentLayerIdx = 0;
         const slideLayers = document.querySelectorAll('.full-slide-layer');
         const totalLayers = slideLayers.length;
 
         function triggerCustomSmokyTransition() {
-            // ট্রানজিশন চলাকালীন পারটিকেলস এর গতি বৃদ্ধি (স্মোকি ইফেক্ট)
+            // ট্রানজিশনের সময় পারটিকেলসের স্পীড সাময়িক বৃদ্ধি (Smoky Transition)
             particles.forEach(p => p.speedY *= 2.8);
 
-            // বর্তমান স্লাইডটিকে (টেক্সট এবং ইমেজ সহ একবারে) ফেড-আউট করে রিমুভ করা
+            // বর্তমান স্লাইড আউট হবে
             slideLayers[currentLayerIdx].classList.remove('active');
 
-            // পরবর্তী স্লাইডে মুভ করা
+            // ৫টি স্লাইডের ইনডেক্স লুপ
             currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
 
-            // নতুন স্লাইডকে স্ক্রিনে আনা (স্লাইড ২ ও ৩ এ কোন টেক্সট আসবে না)
+            // নতুন স্লাইড ইন হবে
             slideLayers[currentLayerIdx].classList.add('active');
 
             setTimeout(() => {
-                // ট্রানজিশন শেষে পারটিকেলস এর গতি আবার স্বাভাবিক করা
+                // স্পীড আবার স্বাভাবিক স্তরে নামিয়ে আনা
                 particles.forEach(p => p.speedY = Math.random() * 0.8 + 0.3);
             }, 1500);
         }
 
-        // প্রতি ৫ সেকেন্ড পর পর স্লাইড পরিবর্তন হবে
+        // ৫ সেকেন্ড পর পর প্রিমিয়াম স্লাইড রোটেট হবে
         if (totalLayers > 0) {
             setInterval(triggerCustomSmokyTransition, 5000);
         }
 
-        // --- ৩. SMOOTH SCROLL ROUTING ---
+        // --- 3. SMOOTH SCROLL ROUTING ---
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
