@@ -87,88 +87,102 @@
             color: var(--primary-gold);
         }
 
-        /* ===== HERO CONTAINER WITH SMOKY SLIDESHOW ===== */
-        .hero-container {
+        /* ===== ADVANCED FULL LAYER SLIDESHOW SECTOR ===== */
+        .hero-view-port {
             margin-top: 75px;
             width: 100%;
-            background: #0d0a05;
-            border-bottom: 3px solid var(--deep-gold);
+            height: 620px;
             position: relative;
-            z-index: 2;
-        }
-
-        /* স্মোকি স্লাইডশোর জন্য ডেডিকেটেড ফ্রেম */
-        .hero-banner-frame {
-            width: 100%;
-            height: 550px;
             overflow: hidden;
-            position: relative;
             background: #000;
+            border-bottom: 3px solid var(--deep-gold);
         }
 
-        /* স্লাইডের ইমেজগুলোর সিএসএস */
-        .hero-slide {
+        /* ক্যানভাস লেয়ার যা পারটিকেলস এবং স্মোক জেনারেট করবে */
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* পুরো ফুল লেয়ার (টেক্সট + ইমেজ একসাথে) */
+        .full-slide-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* পারটিকেলস স্মোকি ডিজল্ভ ট্রানজিশন ইফেক্ট */
+            transition: opacity 1.4s ease-in-out, filter 1.4s ease-in-out, transform 1.4s ease-in-out;
+            transform: scale(1.03);
+            filter: blur(15px) brightness(0.2) contrast(1.2);
+        }
+
+        /* একটিভ স্লাইড যা পুরো স্পষ্টভাবে দেখা যাবে */
+        .full-slide-layer.active {
+            opacity: 1;
+            z-index: 2;
+            transform: scale(1);
+            filter: blur(0px) brightness(1) contrast(1);
+        }
+
+        /* স্লাইডের ভেতরের ব্যাকগ্রাউন্ড ইমেজ */
+        .slide-bg-img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0;
-            z-index: 1;
-            /* স্মোকি ব্লার ও স্কেল ইফেক্টের ট্রানজিশন */
-            transition: opacity 1.2s ease-in-out, filter 1.2s ease-in-out, transform 1.2s ease-in-out;
-            transform: scale(1.05);
-            filter: blur(10px) brightness(0.3); /* শুরুতে ইমেজ ব্লার ও ডার্ক থাকবে */
         }
 
-        /* যখন স্লাইডটি একটিভ বা দৃশ্যমান হবে */
-        .hero-slide.active {
-            opacity: 1;
-            z-index: 2;
-            transform: scale(1);
-            filter: blur(0px) brightness(1); /* স্মোক কেটে গিয়ে নিখুঁত ছবি প্রকাশ পাবে */
-        }
-
-        /* ইমেজের উপর প্রিমিয়াম ডার্ক লাক্সারিয়াস শ্যাডো লেয়ার */
-        .hero-banner-frame::after {
+        /* ইমেজের উপরে লাক্সারিয়াস গ্লোয়িং ডার্ক গ্রেডিয়েন্ট */
+        .full-slide-layer::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.85) 100%);
+            background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 100%);
+            z-index: 2;
+        }
+
+        /* স্ক্রিনশট 1000014884.jpg এর নিখুঁত টেক্সট লেআউট ফরম্যাট */
+        .original-text-box {
+            position: relative;
             z-index: 3;
-        }
-
-        /* টেক্সট কন্টেন্ট বক্স */
-        .hero-text-content {
-            position: absolute;
-            bottom: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
             max-width: 850px;
+            width: 90%;
             text-align: center;
-            z-index: 5;
+            padding: 0 1rem;
         }
 
-        .hero h1 {
-            font-size: 3.8rem;
+        .original-text-box h1 {
+            font-size: 4rem;
             font-weight: 900;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-gold);
             letter-spacing: 2px;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 215, 0, 0.4);
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .original-text-box p {
+            font-size: 1.35rem;
+            margin-bottom: 2.5rem;
             color: #ffffff;
-            line-height: 1.7;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.95);
+            line-height: 1.8;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
             font-weight: 500;
         }
 
@@ -198,7 +212,7 @@
             padding: 6rem 2rem;
             background: var(--dark-black);
             position: relative;
-            z-index: 2;
+            z-index: 5;
             border-bottom: 1px solid rgba(255,215,0,0.15);
         }
 
@@ -245,7 +259,7 @@
             padding: 6rem 2rem;
             background: #121212;
             position: relative;
-            z-index: 2;
+            z-index: 5;
             border-bottom: 1px solid rgba(255,215,0,0.15);
         }
 
@@ -275,7 +289,7 @@
             padding: 6rem 2rem;
             background: var(--dark-black);
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
 
         .contact-container {
@@ -301,14 +315,14 @@
             text-align: center;
             border-top: 1px solid rgba(197, 160, 89, 0.2);
             position: relative;
-            z-index: 2;
+            z-index: 5;
         }
 
         @media (max-width: 768px) {
             nav ul { display: none; }
-            .hero-banner-frame { height: 380px; }
-            .hero h1 { font-size: 2.1rem; }
-            .hero p { font-size: 0.95rem; }
+            .hero-view-port { height: 460px; }
+            .original-text-box h1 { font-size: 2.3rem; margin-bottom: 1rem; }
+            .original-text-box p { font-size: 1rem; margin-bottom: 1.5rem; }
             .contact-container { grid-template-columns: 1fr; }
         }
     </style>
@@ -329,21 +343,59 @@
         </ul>
     </nav>
 
-    <!-- NEW ADVANCED HERO SLIDESHOW COMPONENT -->
-    <div class="hero-container" id="home">
-        <div class="hero-banner-frame">
-            <!-- এখানে আপনার অফার, গেমস ও টিপস সংক্রান্ত ছবিগুলো ক্রমান্বয়ে স্মোকি ইফেক্ট নিয়ে স্লাইড হবে -->
-            <img class="hero-slide active" src="1000014883.png" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Offer Banner 1">
-            <img class="hero-slide" src="1000014874.jpg" onerror="this.onerror=null; this.src='1000014874.png';" alt="Games Banner 2">
-            <img class="hero-slide" src="1000014875.jpg" onerror="this.onerror=null; this.src='1000014875.png';" alt="Tips Banner 3">
-            <img class="hero-slide" src="1000014876.jpg" onerror="this.onerror=null; this.src='1000014876.png';" alt="Offer Banner 4">
+    <!-- PERFECT FUSION: SMOKY PARTICLES INTERCHANGEABLE COVER SLIDER -->
+    <div class="hero-view-port" id="home">
+        <!-- ইন্টারেক্টিভ কণা এবং ধোঁয়া তৈরির ক্যানভাস লেয়ার -->
+        <canvas id="particleCanvas"></canvas>
+
+        <!-- স্লাইড ১: মেইন ব্যানার + মূল ওরিজিনাল টেক্সট ফরম্যাট -->
+        <div class="full-slide-layer active">
+            <img class="slide-bg-img" src="1000014883.png" onerror="this.onerror=null; this.src='1000014883.PNG';" alt="Cover 1">
+            <div class="original-text-box">
+                <h1>Premium Malaysian 4D Hub</h1>
+                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
+                <a href="#contact" class="cta-button">Connect Securely</a>
+            </div>
         </div>
-        
-        <!-- ওভারলে লাক্সারিয়াস টেক্সট কন্টেন্ট -->
-        <div class="hero-text-content">
-            <h1>Premium Malaysian 4D Hub</h1>
-            <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
-            <a href="#contact" class="cta-button">Connect Securely</a>
+
+        <!-- স্লাইড ২: আপনার দেওয়া নতুন ড্রাগন টিপস ব্যানার (1000014885.png) + টেক্সট ফরম্যাট -->
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014885.png" onerror="this.onerror=null; this.src='1000014885.PNG';" alt="Cover 2">
+            <div class="original-text-box">
+                <h1>Premium Malaysian 4D Hub</h1>
+                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
+                <a href="#contact" class="cta-button">Connect Securely</a>
+            </div>
+        </div>
+
+        <!-- স্লাইড ৩: পরবর্তী ইমেজ ৩ + টেক্সট ফরম্যাট -->
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014874.jpg" onerror="this.onerror=null; this.src='1000014874.png';" alt="Cover 3">
+            <div class="original-text-box">
+                <h1>Premium Malaysian 4D Hub</h1>
+                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
+                <a href="#contact" class="cta-button">Connect Securely</a>
+            </div>
+        </div>
+
+        <!-- স্লাইড ৪: পরবর্তী ইমেজ ৪ + টেক্সট ফরম্যাট -->
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014875.jpg" onerror="this.onerror=null; this.src='1000014875.png';" alt="Cover 4">
+            <div class="original-text-box">
+                <h1>Premium Malaysian 4D Hub</h1>
+                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
+                <a href="#contact" class="cta-button">Connect Securely</a>
+            </div>
+        </div>
+
+        <!-- স্লাইড ৫: পরবর্তী ইমেজ ৫ + টেক্সট ফরম্যাট -->
+        <div class="full-slide-layer">
+            <img class="slide-bg-img" src="1000014876.jpg" onerror="this.onerror=null; this.src='1000014876.png';" alt="Cover 5">
+            <div class="original-text-box">
+                <h1>Premium Malaysian 4D Hub</h1>
+                <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
+                <a href="#contact" class="cta-button">Connect Securely</a>
+            </div>
         </div>
     </div>
 
@@ -398,26 +450,98 @@
         <p>&copy; 2026 MALAYSIAN LOTTERY | All Rights Reserved | Premium Digital Web Infrastructure</p>
     </footer>
 
+    <!-- HIGH PERFORMANCE CANVAS PARTICLES & FUSION SLIDER SCRIPT -->
     <script>
-        // SMOKY FADE SLIDESHOW ENGINE
-        let currentSlideIdx = 0;
-        const heroSlides = document.querySelectorAll('.hero-slide');
-        const totalSlides = heroSlides.length;
+        // --- 1. HTML5 CANVAS GOLDEN PARTICLES ENGINE ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
 
-        function runSmokySlideshow() {
-            // বর্তমান স্লাইডটি স্মোকি ফেড-আউট হবে
-            heroSlides[currentSlideIdx].classList.remove('active');
-            
-            // পরবর্তী স্লাইড ইনডেক্স ক্যালকুলেশন
-            currentSlideIdx = (currentSlideIdx + 1) % totalSlides;
-            
-            // নতুন স্লাইডটি স্মোক কেটে উজ্জ্বল হয়ে প্রকাশ পাবে
-            heroSlides[currentSlideIdx].classList.add('active');
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 65; // গোল্ডেন স্মোক কণার সংখ্যা
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 20;
+                this.size = Math.random() * 4 + 1;
+                this.speedY = Math.random() * 0.8 + 0.3;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.blur = Math.random() * 4 + 2;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                // উপরে উঠার সাথে সাথে কণাগুলো বাতাসে মিলিয়ে যাওয়ার ইফেক্ট
+                if (this.y < 0 || this.alpha <= 0) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.shadowBlur = this.blur;
+                ctx.shadowColor = '#FFD700'; // গোল্ডেন কালার স্মোক গ্লেজ
+                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
         }
 
-        // প্রতি ৪ সেকেন্ড পর পর ব্যানারগুলো স্মোকি স্টাইলে পরিবর্তন হবে
-        if(totalSlides > 0) {
-            setInterval(runSmokySlideshow, 4000);
+        // কণাগুলো ইনিশিয়ালাইজ করা
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+
+        // --- 2. MULTI LAYER INTEGRATED SLIDESHOW ENGINE ---
+        let currentLayerIdx = 0;
+        const slideLayers = document.querySelectorAll('.full-slide-layer');
+        const totalLayers = slideLayers.length;
+
+        function triggerSmokyLayerTransition() {
+            // ১. একটিভ লেয়ারের কণা স্পীড সাময়িক বাড়িয়ে স্মোকি ফেড-আউট শুরু করা
+            particles.forEach(p => p.speedY *= 2.5);
+
+            // ২. বর্তমান লেখা ও ব্যাকগ্রাউন্ড একসাথে ফেড-আউট করে দেওয়া
+            slideLayers[currentLayerIdx].classList.remove('active');
+
+            // ৩. পরবর্তী ইনডেক্স সেট করা
+            currentLayerIdx = (currentLayerIdx + 1) % totalLayers;
+
+            // ৪. নতুন লেখা ও ব্যাকগ্রাউন্ড ইমেজ (যেমন: ড্রাগন ব্যানার) একসাথে স্মুথলি প্রকাশ পাওয়া
+            slideLayers[currentLayerIdx].classList.add('active');
+
+            // ৫. ট্রানজিশন শেষ হলে পারটিকেলসের স্পীড আবার নরমাল করে দেওয়া
+            setTimeout(() => {
+                particles.forEach(p => p.speedY = Math.random() * 0.8 + 0.3);
+            }, 1400);
+        }
+
+        // প্রতি ৫ সেকেন্ড পর পর লেখা ও ইমেজ একসাথে পারটিকেলস ট্রানজিশন নিয়ে চেঞ্জ হবে
+        if (totalLayers > 0) {
+            setInterval(triggerSmokyLayerTransition, 5000);
         }
     </script>
 </body>
