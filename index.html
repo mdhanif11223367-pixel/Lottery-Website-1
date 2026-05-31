@@ -17,7 +17,6 @@
             --dark-black: #0a0a0a;
             --luxury-dark: #121212;
             --white: #ffffff;
-            --light-gray: #f5f5f5;
             --card-bg: #161616;
         }
 
@@ -31,7 +30,7 @@
             scroll-behavior: smooth;
         }
 
-        /* ===== LUXURIOUS MALAYSIAN CULTURAL PATTERN BACKGROUND ===== */
+        /* ===== MALAYSIAN TRADITIONAL SONGKET PATTERN BACKGROUND ===== */
         body {
             position: relative;
         }
@@ -44,17 +43,18 @@
             width: 100%;
             height: 100%;
             background-color: #0a0a0a;
+            /* মালয়েশিয়ান ঐতিহ্যবাহী গোল্ডেন টেক্সচার ইফেক্ট */
             background-image: 
-                radial-gradient(var(--deep-gold) 1px, transparent 0),
-                radial-gradient(var(--deep-gold) 1px, transparent 0);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-            opacity: 0.04;
+                radial-gradient(var(--deep-gold) 1.5px, transparent 0),
+                radial-gradient(var(--deep-gold) 1.5px, transparent 0);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            opacity: 0.05;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* ===== PARTICLE BACKGROUND ===== */
+        /* ===== GOLDEN PARTICLE BG ===== */
         .particle-bg {
             position: fixed;
             top: 0;
@@ -63,7 +63,6 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
-            background: transparent;
         }
 
         .particle {
@@ -72,17 +71,17 @@
             height: 4px;
             background: var(--primary-gold);
             border-radius: 50%;
-            opacity: 0.5;
+            opacity: 0.4;
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
             animation: float-particle 20s infinite ease-in-out;
         }
 
         @keyframes float-particle {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-            50% { transform: translateY(-120px) translateX(60px); opacity: 0.2; }
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+            50% { transform: translateY(-100px) translateX(50px); opacity: 0.1; }
         }
 
-        /* ===== NAVIGATION BAR ===== */
+        /* ===== PREMIUM NAVIGATION BAR ===== */
         nav {
             position: fixed;
             top: 0;
@@ -93,7 +92,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            box-shadow: 0 4px 30px rgba(197, 160, 89, 0.15);
+            box-shadow: 0 4px 30px rgba(197, 160, 89, 0.2);
             border-bottom: 2px solid var(--deep-gold);
         }
 
@@ -117,7 +116,6 @@
             font-weight: 900;
             color: var(--primary-gold);
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
         }
 
         nav ul {
@@ -140,42 +138,57 @@
             color: var(--primary-gold);
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== NEWLY DESIGNED LUXURIOUS COVER PHOTO (HERO SECTION) ===== */
         .hero {
-            margin-top: 80px;
-            background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(20,20,20,0.9) 100%);
-            padding: 7rem 2rem;
-            text-align: center;
-            min-height: 550px;
+            margin-top: 75px;
+            min-height: 580px;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
             position: relative;
-            border-bottom: 2px solid var(--deep-gold);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-bottom: 3px solid var(--deep-gold);
+            /* লাক্সারি কাভার ফটো ডিজাইন: মালয়েশিয়ান ট্র্যাডিশনাল প্যাটার্ন ওভারলে থিম */
+            background: 
+                linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23C5A059' fill-opacity='0.15'/%3E%3C/svg%3E"),
+                linear-gradient(45deg, #1a150b 0%, #0a0a0a 100%);
+            background-size: auto, 60px 60px, auto;
+            box-shadow: inset 0 0 100px rgba(197, 160, 89, 0.2);
+        }
+
+        .hero-content {
+            max-width: 850px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.6rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
             color: var(--primary-gold);
             letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 0 5px rgba(255, 215, 0, 0.2);
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 2.5rem;
-            color: #cccccc;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            color: #dddddd;
+            line-height: 1.8;
+            font-weight: 400;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 3rem;
+            padding: 1.1rem 3.5rem;
             background: linear-gradient(135deg, var(--deep-gold), #ecd599);
             color: var(--dark-black);
             text-decoration: none;
@@ -183,14 +196,14 @@
             font-weight: 800;
             letter-spacing: 2px;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4);
             text-transform: uppercase;
             border: 1px solid var(--primary-gold);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
             background: linear-gradient(135deg, var(--primary-gold), #FFE55C);
         }
 
@@ -204,44 +217,34 @@
             border-bottom: 1px solid rgba(255,215,0,0.15);
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-gold);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .banner-slider {
             position: relative;
             width: 100%;
             max-width: 1000px;
-            height: 480px; /* হাই রেজোলিউশনের জন্য স্ট্যান্ডার্ড উচ্চতা */
+            height: 480px;
             margin: 0 auto;
             overflow: hidden;
             border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             border: 3px solid var(--deep-gold);
-            background: #060606;
+            background: #000000;
         }
 
         .banner-image {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* ইমেজ ফেটে যাওয়া বা চ্যাপ্টা হওয়া রোধ করবে */
+            object-fit: contain; /* ইমেজ কেটে যাওয়া বা চ্যাপ্টা হওয়া রোধ করবে */
             background: #000000;
             display: none;
-            animation: fadeIn 0.6s ease-in-out;
         }
 
         .banner-image.active {
             display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.02); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .banner-controls {
@@ -269,7 +272,7 @@
             color: var(--dark-black);
         }
 
-        /* ===== NEW GAMES & OPERATORS SECTION ===== */
+        /* ===== SUPPORTED MALAYSIAN OPERATORS ===== */
         .games-section {
             padding: 6rem 2rem;
             background: var(--dark-black);
@@ -290,7 +293,7 @@
             background: var(--card-bg);
             border-radius: 8px;
             border: 1px solid rgba(197, 160, 89, 0.2);
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
@@ -299,7 +302,7 @@
         .game-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary-gold);
-            box-shadow: 0 15px 35px rgba(255,215,0,0.15);
+            box-shadow: 0 15px 35px rgba(255,215,0,0.2);
         }
 
         .game-icon {
@@ -326,14 +329,14 @@
             display: inline-block;
             background: rgba(255, 215, 0, 0.1);
             color: var(--primary-gold);
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 1.2rem;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 700;
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
-        /* ===== LIVE RESULTS SECTION ===== */
+        /* ===== LIVE RESULTS MONITOR ===== */
         .results-section {
             padding: 6rem 2rem;
             background: #121212;
@@ -374,7 +377,6 @@
             color: var(--white);
             margin: 1rem 0;
             font-family: 'Courier New', monospace;
-            text-shadow: 0 0 10px rgba(255,255,255,0.1);
         }
 
         .draw-time {
@@ -383,7 +385,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== CONTACT & PLATFORM SECURITY ===== */
+        /* ===== CONTACT GATEWAY ===== */
         .contact-section {
             padding: 6rem 2rem;
             background: var(--dark-black);
@@ -416,7 +418,6 @@
             font-size: 0.85rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            letter-spacing: 1px;
         }
 
         .form-group input, .form-group textarea {
@@ -425,7 +426,6 @@
             border: 1px solid rgba(197, 160, 89, 0.4);
             color: white;
             border-radius: 4px;
-            font-family: inherit;
         }
 
         .form-group input:focus, .form-group textarea:focus {
@@ -444,17 +444,6 @@
             z-index: 2;
         }
 
-        footer p { font-size: 0.9rem; }
-
-        /* ===== LANGUAGE SELECTOR ===== */
-        .language-selector {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 999;
-        }
-
-        /* RESPONSIVE LAYOUT */
         @media (max-width: 768px) {
             nav ul { display: none; }
             .hero h1 { font-size: 2.3rem; }
@@ -469,7 +458,7 @@
 
     <nav>
         <div class="logo">
-            <img class="logo-img" src="1000014839.png" alt="Logo">
+            <img class="logo-img" src="1000014839.png" onerror="this.src='1000014839.PNG';" alt="Logo">
             <span>MALAYSIAN LOTTERY</span>
         </div>
         <ul>
@@ -484,7 +473,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>PREMIUM MALAYSIAN 4D HUB</h1>
-            <p>Your institutional tier destination for live operators, historical metrics, and verified algorithmic selections across the Malaysian lottery architecture.</p>
+            <p>Experience institutional grade transparency, historic statistical metrics, and live verified extraction architectures across the most trusted lottery platforms in Malaysia.</p>
             <a href="#contact" class="cta-button">Connect Securely</a>
         </div>
     </section>
@@ -493,10 +482,10 @@
         <div class="banner-container">
             <h2 class="section-title">EXCLUSIVE CAMPAIGNS</h2>
             <div class="banner-slider">
-                <img class="banner-image active" src="1000014874.jpg" alt="Campaign Banner 1">
-                <img class="banner-image" src="1000014875.jpg" alt="Campaign Banner 2">
-                <img class="banner-image" src="1000014876.jpg" alt="Campaign Banner 3">
-                <img class="banner-image" src="1000014877.jpg" alt="Campaign Banner 4">
+                <img class="banner-image active" src="1000014874.jpg" onerror="this.src='1000014874.JPG';" alt="Campaign 1">
+                <img class="banner-image" src="1000014875.jpg" onerror="this.src='1000014875.JPG';" alt="Campaign 2">
+                <img class="banner-image" src="1000014876.jpg" onerror="this.src='1000014876.JPG';" alt="Campaign 3">
+                <img class="banner-image" src="1000014877.jpg" onerror="this.src='1000014877.JPG';" alt="Campaign 4">
             </div>
             <div class="banner-controls">
                 <button class="banner-btn" onclick="prevBanner()">PREVIOUS</button>
@@ -607,7 +596,7 @@
         // Background Floating Particles
         function initParticles() {
             const container = document.getElementById('particleBg');
-            for (let i = 0; i < 35; i++) {
+            for (let i = 0; i < 30; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 p.style.left = Math.random() * window.innerWidth + 'px';
