@@ -88,40 +88,62 @@
             color: var(--primary-gold);
         }
 
-        /* ===== 100% FIXED SLIDER (NO MORE BLANK SCREEN) ===== */
+        /* ===== 100% BULLETPROOF CSS SLIDER (NO JAVASCRIPT NEEDED) ===== */
         .hero-view-port {
             margin-top: 75px;
             width: 100%;
-            height: 600px; 
+            height: 550px; 
             position: relative;
             background: #000000; 
             border-bottom: 3px solid var(--deep-gold);
+            overflow: hidden;
         }
 
-        /* প্রতিটি স্লাইড ফিক্সড ডিসপ্লে */
+        /* স্লাইড কন্টেইনার */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* প্রতিটি ইমেজ লেয়ার */
         .full-slide-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: none; /* প্রথমে সব বন্ধ থাকবে */
+            opacity: 0;
+            display: flex;
             justify-content: center;
             align-items: center;
             background: #000000;
+            /* পিওর সিএসএস অ্যানিমেশন - ১৬ সেকেন্ড লুপ */
+            animation: cssSliderAnimation 16s infinite ease-in-out;
         }
 
-        /* একটিভ স্লাইড সাথে সাথে শো করবে */
-        .full-slide-layer.active {
-            display: flex !important;
-        }
-
-        /* ইমেজের সাইজ শতভাগ পারফেক্ট রাখার পলিসি */
         .slide-bg-img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* ইমেজ কেটে যাবে না বা চ্যাপ্টা হবে না */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* ইমেজ কাটবে না, একদম পারফেক্ট দেখাবে */
             display: block;
+        }
+
+        /* ৪টি ইমেজের জন্য অ্যানিমেশন টাইমিং বা ডিলে সেটআপ */
+        .full-slide-layer:nth-child(1) { animation-delay: 0s; }
+        .full-slide-layer:nth-child(2) { animation-delay: 4s; }
+        .full-slide-layer:nth-child(3) { animation-delay: 8s; }
+        .full-slide-layer:nth-child(4) { animation-delay: 12s; }
+
+        /* পিওর সিএসএস লুপ ও স্মুথ ফেইড অ্যানিমেশন */
+        @keyframes cssSliderAnimation {
+            0% { opacity: 0; z-index: 1; }
+            5% { opacity: 1; z-index: 2; }
+            25% { opacity: 1; z-index: 2; }
+            30% { opacity: 0; z-index: 1; }
+            100% { opacity: 0; z-index: 1; }
         }
 
         /* ===== SECTION TITLE STYLE ===== */
@@ -147,4 +169,136 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profile-image-box img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 12px;
+            border: 3px solid var(--deep-gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .profile-info h2 {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary-gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid var(--deep-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .profile-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #dddddd;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            background: var(--dark-black);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            border-top: 3px solid var(--deep-gold);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-gold);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #aaaaaa;
+            text-transform: uppercase;
+        }
+
+        /* ===== PREMIUM LOTTERY OPERATORS & SERVICES ===== */
+        .services-section {
+            padding: 6rem 2rem;
+            background: var(--dark-black);
+            border-bottom: 1px solid rgba(255,215,0,0.15);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; display: inline-block; }
+        .service-card h3 { color: var(--primary-gold); font-size: 1.4rem; margin-bottom: 0.8rem; }
+        .service-card p { color: #aaaaaa; font-size: 1.05rem; line-height: 1.6; }
+
+        /* ===== LIVE RESULTS MONITOR ===== */
+        .results-section {
+            padding: 6rem 2rem;
+            background: var(--luxury-dark);
+            border-bottom: 1px solid rgba(255,215,0,0.15);
+        }
+
+        .results-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .result-box {
+            background: #111111;
+            border-radius: 6px;
+            border-top: 4px solid var(--deep-gold);
+            padding: 2.2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .operator-name { font-size: 1.2rem; font-weight: 800; color: var(--accent-blue); margin-bottom: 1rem; }
+        .lucky-number { font-size: 3.2rem; font-weight: 900; color: var(--primary-gold); margin: 1rem 0; }
+        .draw-time { font-size: 0.9rem; color: #888888; }
+
+        /* ===== PORTFOLIO / HISTORIC WINS ===== */
+        .portfolio-section {
+            padding: 6rem 2rem;
+            background: var(--dark-black);
+            border-bottom: 1px solid rgba(255,215,0
